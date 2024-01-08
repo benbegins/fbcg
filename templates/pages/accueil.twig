@@ -1,0 +1,53 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+	{# Hero #}
+	<section class="pt-header relative lg:h-[90dvh] lg:max-h-[66vw] lg:text-white lg:flex lg:items-end lg:pb-12">
+		<div class="container">
+			<h1 class="text-3xl lg:text-4xl font-extrabold tracking-tighter leading-none mb-6 lg:mb-8 xl:w-3/4">Votre spécialiste en aluminium, bronze, laiton, cuivre, fonte &amp; plastiques techniques</h1>
+			{% include "components/btns.twig" with {primary: true, text: 'Découvrez nos produits', link: product_archive_link} %}
+			<div class="lg:hidden"></div>
+		</div>
+		{# Video #}
+		<div class="hidden lg:block absolute -z-10 top-0 left-0 w-full h-full">
+			<video autoplay muted loop playsinline class="w-full h-full object-cover" poster="{{theme.link}}/src/video/fbcg-placeholder.jpg">
+				<source src="{{theme.link}}/src/video/fbcg.mp4" type="video/mp4">
+			</video>
+			<div class="absolute inset-0 bg-gradient-to-r from-black opacity-50"></div>
+		</div>
+		{# Image mobile #}
+		<div class="lg:hidden mt-16 aspect-square sm:aspect-video">
+			<img src="{{theme.link}}/src/video/fbcg-placeholder.jpg" alt="FBCG, votre spécialiste en aluminium, bronze, laiton, cuivre, fonte &amp; plastiques techniques" class="w-full h-full object-cover">
+		</div>
+	</section>
+
+
+	{# Introduction #}
+	<section class="relative pt-section-mobile sm:py-section-mobile lg:py-section-desktop">
+		<div class="container lg:py-[4vw]">
+			<p class="font-semibold text-xl lg:text-2xl lg:text-center lg:w-1/2 lg:mx-auto">{{ post.meta('introduction') }}</p>
+		</div>
+		<img src="{{theme.link}}/src/images/shapes/shape-01.png" alt="" class="hidden lg:inline lg:w-1/5 lg:absolute lg:top-1/2 lg:left-0 lg:-translate-y-1/2">
+
+		<img src="{{theme.link}}/src/images/shapes/shape-02.png" alt="" class="w-1/2 ml-auto sm:hidden lg:inline lg:w-1/5 lg:absolute lg:top-1/2 lg:right-0 lg:-translate-y-1/2">
+	</section>
+
+
+	{# Produits #}
+	<section v-scope="Slider()" class="pb-section-mobile lg:pb-section-desktop">
+		<div class="container">
+			<h2 class="text-xl lg:text-2xl font-semibold mb-2 lg:mb-4">Tous nos produits</h2>
+			<p>Grace à notre capacité de coupe allant jusqu'à 1040 mm d'épaisseur et jusqu'au diamètre 1010mm, nous pouvons vous proposer du sciage unitaire, petite et grande série.</p>
+		</div>
+		<div class="swiper">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">1</div>
+				<div class="swiper-slide">2</div>
+				<div class="swiper-slide">3</div>
+			</div>
+		</div>
+	</section>
+
+
+{% endblock %}

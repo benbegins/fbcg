@@ -1,0 +1,23 @@
+*::selection {
+	@apply bg-orange text-white;
+}
+
+body {
+	@apply bg-white text-black font-medium text-base;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	&.admin-bar {
+		.site-header {
+			top: 46px;
+
+			@media (min-width: 1024px) {
+				top: 32px;
+			}
+		}
+	}
+}
+
+.container {
+	max-width: 1600px;
+}

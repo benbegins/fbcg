@@ -1,0 +1,41 @@
+{# Products #}
+<ul class="flex flex-col gap-6 lg:gap-1 lg:flex-row lg:items-center">
+	{% for type in product_types %}
+		<li>
+			<button class="btn-submenu font-semibold w-full flex items-center justify-between gap-2 hover:bg-gray transition-colors duration-200 lg:py-1.5 lg:px-3 lg:rounded-sm" @click="toggleSubmenu($el)" aria-expanded="false" aria-controls="submenu-{{type.slug}}">
+				{{type.title}}
+				<span aria-hidden="true" class="icon-dropdown scale-125 lg:scale-100 lg:mb-1"></span>
+			</button>
+			<div class="site-header__submenu opacity-0 pl-8 overflow-hidden h-0 transition-all duration-500 lg:absolute lg:top-full lg:w-[calc(100%+2px)] lg:-left-px lg:bg-white lg:text-black lg:-translate-y-1 lg:rounded-b-md lg:border-b lg:border-l lg:border-r lg:border-gray lg:border-t-0 lg:p-0 xl:grid xl:grid-cols-3 xl:items-start" id="submenu-{{type.slug}}" aria-hidden="true">
+				<div class="hidden xl:block xl:pl-6 xl:pb-10 xl:pt-6">
+					<h3 class="font-semibold text-2xl mb-2">{{type.title}}</h3>
+					<p class="mb-4 leading-relaxed">{{type.description}}</p>
+					{% include "components/btns.twig" with {primary: true, text: "Explorez notre sélection", link: type.link} %}
+				</div>
+				<ul class="flex flex-col lg:px-6 lg:pb-10 lg:pt-6 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:gap-y-2 xl:col-span-2">
+					{% for product in products %}
+						{% if product.terms({taxonomy: 'type-de-produit'})[0].id == type.id %}
+							<li class="pt-4 lg:pt-0 lg:font-semibold">
+								<a class="lg:block lg:py-1.5 lg:px-3 lg:rounded-sm lg:hover:bg-gray lg:transition-colors lg:duration-200" href="{{product.link}}">{{product.title}}</a>
+							</li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			</div>
+		</li>
+	{% endfor %}
+</ul>
+
+
+{% if items %}
+	<ul class="flex flex-col gap-6 lg:hidden xl:flex lg:flex-row lg:items-center lg:relative lg:after:absolute lg:after:left-0 lg:after:top-1/2 lg:after:-translate-y-1/2 lg:after:w-px lg:after:h-3 lg:after:bg-black lg:pl-6">
+		{% for item in items %}
+			<li class="{{ item.classes | join(' ') }}">
+				<a href="{{ item.link }}" class="font-semibold opacity-50 hover:text-orange hover:opacity-100 transition-all duration-200">{{ item.title }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endif %}
+
+{# Contact #}
+<a href={{contact_page.link}} class="font-semibold inline-block bg-blue text-white text-center rounded-md leading-none py-5 lg:py-3 px-5 hover:bg-orange transition-colors duration-200">Contact</a>

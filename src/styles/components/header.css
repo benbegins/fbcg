@@ -1,0 +1,63 @@
+.site-header {
+	.site-header__logo {
+		display: block;
+		background: url("../../images/logo-fbcg-blue.svg") no-repeat;
+		background-size: contain;
+		width: 85px;
+		height: 60px;
+
+		@media screen and (min-width: 1024px) {
+			background: url("../../images/logo-fbcg-white.svg") no-repeat;
+			background-size: contain;
+			width: 114px;
+			height: 80px;
+		}
+	}
+
+	.icon-dropdown {
+		@apply block mt-1 origin-center transition-transform duration-300;
+		width: 10px;
+		height: 6px;
+		background: url("../../images/icons/icon-dropdown.svg") no-repeat;
+		background-size: contain;
+		margin-top: 0.25rem;
+	}
+
+	.btn-submenu[aria-expanded="true"] .icon-dropdown {
+		@apply rotate-180;
+	}
+
+	.btn-burger {
+		.line {
+			@apply origin-center transition-transform duration-300;
+		}
+
+		.top {
+			@apply -translate-y-8;
+		}
+
+		.bottom {
+			@apply translate-y-8;
+		}
+
+		&.active {
+			.top {
+				@apply rotate-45 translate-y-0;
+			}
+
+			.bottom {
+				@apply -rotate-45 translate-y-0;
+			}
+
+			.mid {
+				@apply scale-x-0;
+			}
+		}
+	}
+
+	.btn-submenu {
+		&.active {
+			@apply lg:bg-gray;
+		}
+	}
+}
