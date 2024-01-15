@@ -1,0 +1,80 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+	{# Hero #}
+	{% include "components/hero.twig" with {image: post.thumbnail, title: post.post_title } %}
+
+	{# Content #}
+	<section v-scope="Documentations()" class="pb-section-mobile lg:py-section-desktop">
+		<div
+			class="container lg:grid lg:grid-cols-3 lg:gap-6">
+
+			{# Btn filter #}
+			<div class="mt-2 pb-section-mobile lg:hidden">
+				<button @click="filterOpen = true" class="w-full font-semibold text-md flex items-center justify-between py-4 border-b border-black">
+					Filtres
+					<img src="{{theme.link}}/src/images/icons/icon-plus.svg" alt="Icon plus">
+				</button>
+			</div>
+
+			{# Filters #}
+			<div class="fixed bg-white h-screen w-full overflow-y-auto top-0 left-0 z-50 py-header px-5 lg:px-0 lg:py-0 lg:block lg:sticky lg:top-10 lg:z-0" :class="[filterOpen ? 'block' : 'hidden']">
+				<button @click="filterOpen = false" class="absolute top-6 right-5 lg:hidden">
+					<img src="{{theme.link}}/src/images/icons/icon-plus.svg" alt="Icon plus" class="rotate-45" width="20">
+				</button>
+				<p class="font-semibold text-xl pb-10 lg:hidden">Filtres</p>
+				{% for index, type in doc_type %}
+					<h2 class="font-extrabold tracking-tighter leading-none text-sm opacity-50 pb-4{% if index != 0 %} pt-8{% endif %}">{{type.title}}</h2>
+					<ul class="grid gap-4">
+						{% for material in materials %}
+							{% set display_material_title = true %}
+							{% for document in documents %}
+								{% if document.terms('materiau')[0].id == material.id and document.terms('type-de-document')[0].id == type.id %}
+									{% if display_material_title %}
+										<li class="font-semibold leading-tight pl-6 lg:pl-0">
+											<a class="transition-colors duration-200 hover:text-orange " @click="filterOpen = false" href="#{{type.slug}}-{{material.slug}}">{{material.title}}</a>
+										</li>
+										{% set display_material_title = false %}
+									{% endif %}
+								{% endif %}
+							{% endfor %}
+						{% endfor %}
+					</ul>
+				{% endfor %}
+			</div>
+
+			{# Documents #}
+			<div class="lg:col-span-2">
+				{% for index, type in doc_type %}
+					<h2 class="doc_type text-3xl lg:text-4xl font-extrabold tracking-tighter leading-none{% if index != 0 %} pt-section-mobile lg:pt-section-desktop{% endif %}">{{type.title}}</h2>
+					{% for material in materials %}
+						{% set display_material_title = true %}
+						<ul class="grid gap-4">
+							{% for document in documents %}
+								{% if document.terms('materiau')[0].id == material.id and document.terms('type-de-document')[0].id == type.id %}
+									{% if display_material_title %}
+										<h3 id="{{type.slug}}-{{material.slug}}" class="flex items-center gap-2 material font-extrabold pt-6 lg:pt-8">
+											<div class="circle w-2.5 h-2.5 border border-black rounded-full"></div>
+											{{material.title}}</h3>
+										{% set display_material_title = false %}
+									{% endif %}
+									<li>
+										{% include "components/btns.twig" with { download: true, title: document.meta('document_title'), link: document.meta('document') } %}
+									</li>
+								{% endif %}
+							{% endfor %}
+						</ul>
+					{% endfor %}
+				{% endfor %}
+			</div>
+
+		</div>
+	</section>
+
+
+	{# Section Question/conseil #}
+	{% include "components/section-question.twig" %}
+
+
+{% endblock %}

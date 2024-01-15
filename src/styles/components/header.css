@@ -6,6 +6,13 @@
 		width: 85px;
 		height: 60px;
 
+		&.blue {
+			@media screen and (min-width: 1024px) {
+				background: url("../../images/logo-fbcg-blue.svg") no-repeat;
+				background-size: contain;
+			}
+		}
+
 		@media screen and (min-width: 1024px) {
 			background: url("../../images/logo-fbcg-white.svg") no-repeat;
 			background-size: contain;

@@ -1,7 +1,7 @@
 <header
 	v-scope="Menu()" @vue:mounted="scrollEvent($el)" class="site-header absolute w-full z-50">
 	{# Button menu #}
-	<div class="container lg:hidden fixed w-full z-20 flex justify-end pt-3">
+	<div class="lg:hidden fixed z-30 pt-3 right-5">
 		<button @click="toggleMenu" class="btn-burger bg-white border border-gray rounded-sm pl-3 flex items-center gap-3" :class="{'active': menuOpen}">
 			<span v-if="menuOpen" class="font-semibold">fermer</span>
 			<span v-else class="font-semibold">menu</span>
@@ -16,7 +16,7 @@
 	</div>
 
 	{# Menu #}
-	<div class="container fixed w-full z-10 lg:flex lg:justify-end lg:pt-6">
+	<div class="container fixed w-full z-20 lg:z-10 lg:flex lg:justify-end lg:pt-6 lg:left-1/2 lg:-translate-x-1/2">
 		<nav class="absolute left-0 top-0 z-10 flex h-screen overflow-y-auto w-full flex-col gap-6 bg-white p-5 py-24 text-md transition-opacity duration-300 lg:relative lg:h-auto lg:w-auto lg:pointer-events-auto lg:overflow-visible lg:flex-row lg:items-center lg:justify-end lg:gap-6 lg:rounded-md lg:border lg:border-gray lg:px-6 lg:py-4 lg:text-base lg:opacity-100" :class="[menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none']">
 			{% include "partials/menu.twig" with {items: menu.items} %}
 		</nav>
@@ -24,8 +24,8 @@
 
 	{# Logo #}
 	<div class="container">
-		<div class="py-2 lg:pt-6 flex justify-between items-center">
-			<a href={{site.url}} class="site-header__logo transition-all duration-500" aria-label="Logo FBCG"></a>
+		<div class="py-2 lg:pt-6 inline-flex justify-between items-center relative z-10">
+			<a href={{site.url}} class="site-header__logo{% if logo_blue %} blue{% endif %} transition-all duration-500" aria-label="Logo FBCG"></a>
 		</div>
 	</div>
 

@@ -29,6 +29,7 @@ export default {
 			"2xl": "1.625rem",
 			"3xl": "2.5rem",
 			"4xl": "4rem",
+			"5xl": "5.5rem",
 		},
 
 		extend: {
@@ -37,7 +38,7 @@ export default {
 			},
 
 			padding: {
-				header: "7rem",
+				header: "6rem",
 				"section-mobile": "3.5rem",
 				"section-desktop": "8rem",
 			},

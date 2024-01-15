@@ -1,7 +1,18 @@
 {% extends "layout.twig" %}
 
 {% block content %}
-    
-    <h1>404</h1>
+
+	<section class="pt-header">
+		<div class="container py-section-mobile lg:py-section-desktop">
+			<div class="grid gap-6 lg:gap-8 lg:w-2/3 lg:mx-auto">
+				<img class="w-20 lg:w-28" src="{{theme.link}}/src/images/icons/icon-404.svg" alt="Icon 404">
+				<div>
+					<h1 class="text-3xl lg:text-4xl font-extrabold tracking-tighter leading-none">Nous n'avons pas trouvé la page que vous recherchiez.</h1>
+					<p class="text-md lg:text-lg font-semibold mt-2 lg:mt-4">Rendez-vous sur la page d'accueil ou parcourez le menu ci-dessus.</p>
+				</div>
+				<div>{% include "components/btns.twig" with { primary: true, text: "Aller à la page d'accueil", link: site.url } %}</div>
+			</div>
+		</div>
+	</section>
 
 {% endblock %}

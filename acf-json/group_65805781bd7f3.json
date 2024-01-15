@@ -142,7 +142,7 @@
                 {
                     "key": "field_6580599485aa8",
                     "label": "Document",
-                    "name": "document",
+                    "name": "product_document",
                     "aria-label": "",
                     "type": "post_object",
                     "instructions": "",
@@ -154,7 +154,7 @@
                         "id": ""
                     },
                     "post_type": [
-                        "brochure"
+                        "documentation"
                     ],
                     "post_status": "",
                     "taxonomy": "",
@@ -167,6 +167,26 @@
                     "parent_repeater": "field_6580595c85aa6"
                 }
             ]
+        },
+        {
+            "key": "field_659fce03d6794",
+            "label": "Section Informations techniques",
+            "name": "display_technical_infos",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Afficher la section de présentation de la documentation technique avec lien vers la page de documentations",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "Oui",
+            "ui_off_text": "Non",
+            "ui": 1
         }
     ],
     "location": [
@@ -187,5 +207,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1702921118
+    "modified": 1704971890
 }

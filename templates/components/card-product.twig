@@ -1,0 +1,12 @@
+<div class="md:flex md:gap-4">
+	<div class="md:flex-none">
+		<img src="{{theme.link}}/src/images/icons/icon-product.svg" alt="icon metal">
+	</div>
+	<div class="w-full">
+		<h2 class="text-md lg:text-lg font-semibold border-b border-black mt-2 pb-2 mb-2 md:mt-1.5 lg:pb-4 lg:mb-4">
+			<a href="{{product.link}}">{{product.post_title}}</a>
+		</h2>
+		<p class="mb-6 lg:mb-8 leading-relaxed">{{product.meta('description')}}</p>
+		{% include "components/btns.twig" with {secondary: true, text: 'En savoir plus', link: product.link} %}
+	</div>
+</div>

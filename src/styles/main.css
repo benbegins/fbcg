@@ -4,6 +4,8 @@
 
 /* Abstracts */
 @import "./abstracts/global.css";
+@import "./abstracts/text.css";
 
 /* Components */
 @import "./components/header.css";
+@import "./components/slider.css";

@@ -2,6 +2,54 @@
 
 {% block content %}
 
-    <h1>Contact</h1>
-    
-{% endblock %}
+	<section class="pt-header" v-scope="Contact()">
+		<div class="container pb-section-mobile lg:py-section-desktop lg:grid lg:grid-cols-2 lg:gap-6">
+			<div class="lg:w-5/6">
+				<h1 class="font-extrabold text-3xl lg:text-4xl leading-none tracking-tighter mb-6">Contactez-nous</h1>
+				<p class="leading-relaxed">Remplissez le formulaire ou appelez-nous directement par téléphone pour discuter de vos besoins spécifiques en métaux non-ferreux, obtenir des informations techniques détaillées ou explorer des solutions sur mesure. Notre équipe est là pour vous aider,  nous sommes impatients de collaborer avec vous et de répondre à toutes vos questions.</p>
+			</div>
+			<div class="pt-section-mobile lg:pt-0">
+				<div class="grid gap-4 lg:gap-6">
+					<div class="grid gap-4 lg:gap-6 lg:grid-cols-2">
+						{% include "components/input.twig" with { type: 'text', label: 'Prénom', name: 'firstname'} %}
+						{% include "components/input.twig" with { type: 'text', label: 'Nom', name: 'lastname'} %}
+					</div>
+					{% include "components/input.twig" with { type: 'text', label: 'Societe', name: 'company'} %}
+					{% include "components/input.twig" with { type: 'email', label: 'Email', name: 'email'} %}
+					{% include "components/input.twig" with { type: 'text', label: 'Ville', name: 'city'} %}
+					<div class="grid gap-4 lg:gap-6 lg:grid-cols-2">
+						{% include "components/input.twig" with { type: 'text', label: 'Code postal', name: 'zipcode'} %}
+						{% include "components/input.twig" with { type: 'tel', label: 'Téléphone', name: 'phone'} %}
+					</div>
+					{% include "components/input.twig" with { type: 'textarea', label: 'Message', name: 'message'} %}
+					<div class="text-sm">
+						{% set policy_url = function('get_privacy_policy_url') %}
+						{% if policy_url %}
+							<p>Dans le cadre de la loi RGPD nous limitons la collecte des données personnelles au strict minimum nécessaire. Voir notre
+								<a class="underline" href="{{policy_url}}">politique de protection de la vie privée</a>.</p>
+						{% endif %}
+
+
+					</div>
+					<div>
+						<div class="flex gap-2 items-start">
+							<input v-model="fields.rgpd" type="checkbox" name="rgpd" id="rgpd" class="mt-1" required>
+							<label for="rgpd" class="text-sm">J'accepte que les informations saisies soient conservées dans le cadre de la demande de contact et de la relation commerciale qui peut en découler.</label>
+
+						</div>
+						<p v-if="errors.rgpd" class="text-sm text-orange">Veuillez cocher cette case</p>
+					</div>
+					<div>
+						<button @click="submitForm" class="relative z-10 inline-block rounded-md bg-orange text-white before:bg-orange-dark after:bg-orange px-8 py-4 font-semibold leading-none  transition-colors duration-300 before:absolute before:inset-0 before:-z-10 before:block before:scale-75 before:rounded-md  before:opacity-0 before:transition-all before:duration-300 after:absolute after:inset-0 after:left-0 after:top-0 after:-z-20 after:translate-x-1.5 after:translate-y-1.5 after:rounded-md  after:bg-opacity-25 after:transition-transform after:duration-300 hover:before:scale-100 hover:before:opacity-100 hover:after:translate-x-0 hover:after:translate-y-0">
+							Envoyer
+						</button>
+
+					</div>
+					<p class="bg-gray text-center leading-tight text-orange p-3 rounded-md" v-text="errorMessage" v-if="errorMessage.length > 0"></p>
+				</div>
+			</div>
+		</section>
+
+		{% include "components/section-map.twig" %}
+
+	{% endblock %}

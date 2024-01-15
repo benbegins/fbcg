@@ -1,6 +1,6 @@
 {
     "key": "group_65807d9cb00d7",
-    "title": "Post Type Brochure, Infos techniques, Directives",
+    "title": "Post Type Documentation",
     "fields": [
         {
             "key": "field_65807d9c16e40",
@@ -48,21 +48,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "brochure"
-            }
-        ],
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "directive-usinage"
-            }
-        ],
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "info-technique"
+                "value": "documentation"
             }
         ]
     ],
@@ -75,5 +61,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1702920396
+    "modified": 1704966832
 }

@@ -1,0 +1,19 @@
+<section
+	class="pt-header relative z-10 lg:h-[35vw] lg:min-h-[400px] lg:flex lg:items-end lg:pb-12 lg:text-white lg:bg-black lg:overflow-hidden">
+	{# Text content #}
+	<div class="container">
+		<h1 class="text-3xl {% if subtitle %}lg:text-4xl {% else %}lg:text-5xl {% endif %}font-extrabold tracking-tighter leading-none mb-4 xl:w-3/4">{{title}}</h1>
+		{% if subtitle %}
+			<p class="font-semibold text-xl lg:text-2xl lg:w-2/3 xl:w-1/2">{{subtitle}}</p>
+		{% endif %}
+	</div>
+	{# Image desktop #}
+	<div class="hidden lg:block absolute -z-10 top-0 left-0 w-full h-full origin-bottom" data-parallax data-speed="15" data-scale="1.15">
+		{{ function('wp_get_attachment_image', image.id, 'large', false, {class: 'w-full h-full object-cover'}) }}
+		<div class="absolute inset-0 bg-gradient-to-r from-black opacity-50"></div>
+	</div>
+	{# Image mobile #}
+	<div class="lg:hidden mt-16 aspect-[4/3] sm:aspect-video">
+		{{ function('wp_get_attachment_image', image.id, 'medium_large', false, {class: 'w-full h-full object-cover'}) }}
+	</div>
+</section>

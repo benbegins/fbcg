@@ -1,58 +1,60 @@
 <footer class="bg-black text-white">
-    <div class="container py-section-mobile lg:py-section-desktop grid grid-flow-row grid-cols-2 gap-5 lg:gap-6 lg:grid-cols-4">
-        <div class="col-span-2 mb-4 lg:col-span-1">
-            <img src="{{theme.link}}/src/images/logo-fbcg-white.svg" alt="Logo FBCG" class="w-20 lg:w-24">
-        </div>
-        <div class="row-span-2 lg:row-span-1">
-            <h2 class="font-extrabold text-sm opacity-50">Produits</h2>
-            <ul class="flex flex-col gap-4 mt-4">
-                {% for type in product_types %}
-                    <li class="relative">
-                        <a href="{{type.link}}" class="font-semibold leading-none hover:text-orange transition-colors duration-200">
-                            {{type.title}}
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div>
-            <h2 class="font-extrabold text-sm opacity-50">Entreprise</h2>
-            <ul class="flex flex-col gap-4 mt-4">
-                {% for item in menu.items %}
-                    <li class="relative">
-                        <a href="{{item.link}}" class="font-semibold leading-none hover:text-orange transition-colors duration-200">
-                            {{item.title}}
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="mt-4 lg:mt-0">
-            <h2 class="font-extrabold text-sm opacity-50">Adresse</h2>
-            <p class="mt-4 leading-relaxed">
-                {{options.contact_infos.adress}}
-            </p>
-            <div class="hidden lg:block lg:mt-8">
-                {% include "components/btns.twig" with {primary: true, text: 'Contacte-nous', link: contact_page.link } %}
-            </div>
-        </div>
-    </div>
+	<div class="container py-section-mobile lg:py-section-desktop grid grid-flow-row grid-cols-2 gap-5 lg:gap-6 lg:grid-cols-4">
+		<div class="col-span-2 mb-4 lg:col-span-1">
+			<img src="{{theme.link}}/src/images/logo-fbcg-white.svg" alt="Logo FBCG" class="w-20 lg:w-24">
+		</div>
+		<div class="row-span-2 lg:row-span-1">
+			<h2 class="font-extrabold text-sm opacity-50">Produits</h2>
+			<ul class="flex flex-col gap-4 mt-4">
+				{% for type in product_types %}
+					<li class="relative">
+						<a href="{{type.link}}" class="font-semibold leading-none hover:text-orange transition-colors duration-200">
+							{{type.title}}
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div>
+			<h2 class="font-extrabold text-sm opacity-50">Entreprise</h2>
+			<ul class="flex flex-col gap-4 mt-4">
+				{% for item in menu.items %}
+					<li class="relative">
+						<a href="{{item.link}}" class="font-semibold leading-none hover:text-orange transition-colors duration-200">
+							{{item.title}}
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="mt-4 lg:mt-0">
+			<h2 class="font-extrabold text-sm opacity-50">Adresse</h2>
+			<p class="mt-4 leading-relaxed">
+				{{options.contact_infos.adress}}
+			</p>
+			<div class="hidden lg:block lg:mt-8">
+				{% include "components/btns.twig" with {primary: true, text: 'Contactez-nous', link: contact_page.link } %}
+			</div>
+		</div>
+	</div>
 
-    <div class="container pb-section-mobile lg:hidden">
-        {% include "components/btns.twig" with {primary: true, text: 'Contacte-nous', link: contact_page.link } %}
-    </div>
+	<div class="container pb-section-mobile lg:hidden">
+		{% include "components/btns.twig" with {primary: true, text: 'Contacte-nous', link: contact_page.link } %}
+	</div>
 
-    <div class="container pb-6 text-sm flex flex-col gap-2 md:flex-row md:justify-between">
-        <div class="flex gap-6">
-            <p>©{{ "now"|date('Y') }} FBCG SA</p>
-            {% set privacy_policy_url = function('get_privacy_policy_url') %}
-            {% if privacy_policy_url %}
-                <a href="{{privacy_policy_url}}" class="transition-colors duration-200 hover:text-orange">Mentions légales &amp; CGV</a>
-            {% endif %}            
-        </div>
-        <div class="flex items-center gap-2">
-            <p>Site conçu par </p>
-            <a href="https://bemy.studio" target="_blank" rel="noreferrer"><img src="{{theme.link}}/src/images/logo-bemy.svg" alt="Logo Bemy - Studio de création digital - Design, Développement" class="w-12 mt-0.5"></a>
-        </div>
-    </div>
+	<div class="container pb-6 text-sm flex flex-col gap-2 md:flex-row md:justify-between">
+		<div class="flex gap-6">
+			<p>©{{ "now"|date('Y') }}
+				FBCG SA</p>
+			{% set privacy_policy_url = function('get_privacy_policy_url') %}
+			{% if privacy_policy_url %}
+				<a href="{{privacy_policy_url}}" class="transition-colors duration-200 hover:text-orange">Mentions légales &amp; CGV</a>
+			{% endif %}
+		</div>
+		<div class="flex items-center gap-2">
+			<p>Site conçu par
+			</p>
+			<a href="https://bemy.studio" target="_blank" rel="noreferrer"><img src="{{theme.link}}/src/images/logo-bemy.svg" alt="Logo Bemy - Studio de création digital - Design, Développement" class="w-12 mt-0.5"></a>
+		</div>
+	</div>
 </footer>

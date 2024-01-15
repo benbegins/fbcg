@@ -1,0 +1,141 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+	<section class="pt-header">
+		<div class="container pb-section-mobile lg:grid lg:grid-cols-2 lg:grid-row-2 lg:pt-section-desktop lg:pb-section-desktop lg:gap-x-6">
+			<div
+				class="lg:col-start-2 lg:row-start-1">
+				{# Breadcrumb #}
+				<ul class="mb-2 flex gap-x-2 flex-wrap text-sm">
+					<li class="flex-none opacity-50">
+						<a class="transition-colors duration-200 hover:text-orange" href="{{products_page}}">Tous les produits</a>
+					</li>
+					<li aria-hidden="true" class="flex-none opacity-50">
+						<span>/</span>
+					</li>
+					<li class="flex-none opacity-50">
+						<a class="transition-colors duration-200 hover:text-orange" href="{{post.terms('type-de-produit')[0].link}}">{{post.terms('type-de-produit')[0].title}}</a>
+					</li>
+					<li aria-hidden="true" class="flex-none opacity-50">
+						<span>/</span>
+					</li>
+					<li class="flex-none font-bold">
+						{{post.post_title}}
+					</li>
+				</ul>
+				{# Title #}
+				<h1 class="text-3xl lg:text-4xl font-extrabold tracking-tighter leading-none mb-6">{{post.post_title}}</h1>
+			</div>
+
+			{# Image #}
+			<div class="overflow-hidden rounded-md lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:w-5/6">
+				<div data-parallax data-speed="5" data-scale="1.2" class="w-full rounded-md overflow-hidden aspect-video lg:aspect-[3/2] ">
+					{{ function('wp_get_attachment_image', post.thumbnail.id, 'medium_large', false, {class: 'w-full h-full object-cover'}) }}
+				</div>
+			</div>
+
+			<div class="lg:col-start-2 lg:row-start-2">
+				{% set formats = post.meta('formats')|split(',') %}
+				{% if formats|length > 1 %}
+					<div class="mt-6 lg:mt-0">
+						<ul class="grid gap-2">
+							{% for format in formats %}
+								<li class="flex items-center gap-4">
+									<div class="circle w-2.5 h-2.5 border border-black rounded-full"></div>
+									{{format}}
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				{% endif %}
+				{# Btn infos #}
+				<div class="mt-6 lg:mt-10">
+					{% include "components/btns.twig" with { primary: true, text: "Demandez plus d'infos", link: contact_page.link } %}
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	{# Presentation #}
+	{% set presentation = post.meta('presentation') %}
+	{% if presentation %}
+		<section class="pb-section-mobile lg:pb-section-desktop">
+			<div class="container lg:grid lg:grid-cols-2 lg:gap-6">
+				<h2 class="text-xl lg:text-2xl font-semibold mb-2 lg:mb-0">Présentation</h2>
+				<div class="wysiwyg">{{presentation}}</div>
+			</div>
+		</section>
+	{% endif %}
+
+
+	{# Brochures #}
+	{% set brochures = post.meta('brochures') %}
+	{% if brochures %}
+		<section class="relative overflow-hidden lg:pb-section-desktop">
+			<div class="container lg:grid lg:grid-cols-2 lg:gap-6">
+				<h2 class="text-xl lg:text-2xl font-semibold mb-2 lg:mb-0">Brochures</h2>
+				<ul class="grid gap-4">
+					{% for brochure in brochures %}
+						<li>
+							{% include "components/btns.twig" with { download: true, title: brochure.brochure_name, link: brochure.product_document.meta('document') } %}
+
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<img src="{{theme.link}}/src/images/shapes/shape-03.png" alt="" class="w-1/2 md:w-1/4 lg:absolute lg:w-1/5 left-0 bottom-0 pointer-events-none">
+		</section>
+	{% endif %}
+
+
+	{# Infos techniques #}
+	{% set display_technical_infos = post.meta('display_technical_infos') %}
+	{% if display_technical_infos %}
+		<section class="relative pt-section-mobile lg:py-section-desktop bg-blue bg-opacity-5">
+			<div class="container pb-section-mobile lg:pb-0 lg:grid lg:grid-cols-2 lg:gap-6">
+				<div class="lg:w-5/6">
+					<h2 class="text-md lg:text-lg font-semibold">Informations techniques</h2>
+					<p class="mb-6 lg:mb-8 mt-2 lg:mt-4 leading-relaxed">Explorez notre documentation technique et accéder à une mine d'informations précieuses sur la qualité et les propriétés de nos alliages, ainsi que des détails techniques sur nos services. Découvrez nos brochures présentant l'ensemble de nos produits, et consultez nos directives d'usinage.</p>
+					{% include "components/btns.twig" with { secondary: true, text: 'Parcourez la documentation', link: documentations_page } %}
+				</div>
+			</div>
+			<div class="overflow-hidden lg:absolute lg:w-1/2 lg:h-full lg:right-0 lg:top-0">
+				<div data-parallax data-speed="5" data-scale="1.2" class="w-full aspect-video overflow-hidden lg:aspect-auto lg:absolute lg:inset-0">
+					<img src="{{theme.link}}/src/images/img-infos-techniques.jpg" alt="Women on laptop" class="w-full h-full object-cover">
+				</div>
+			</div>
+		</section>
+	{% endif %}
+
+
+	{# Other products #}
+	<section v-scope="Slider({slidesOnDesktop: 'auto'})" @vue:mounted="initSlider($el)" class="{% if not display_technical_infos %}bg-blue bg-opacity-5 {% endif %}py-section-mobile lg:py-section-desktop slider-related-products">
+		<div class="container lg:flex lg:items-center lg:justify-between">
+			<h2 class="text-xl lg:text-2xl font-semibold">Explorez nos autres nuances</h2>
+			{% include "components/nav-slider.twig" %}
+		</div>
+
+		{# Slider #}
+		<div class="mt-6">
+			<div class="swiper slider">
+				<div class="swiper-wrapper">
+					{% for product in products %}
+						{% if post.terms('type-de-produit')[0].slug ==  product.terms('type-de-produit')[0].slug and product.id != post.id %}
+							<div class="swiper-slide">
+								{% include "components/card-product.twig" %}
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	{# Section Question/conseil #}
+	{% include "components/section-question.twig" %}
+
+
+{% endblock %}

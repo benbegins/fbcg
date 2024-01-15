@@ -29,6 +29,8 @@ require get_template_directory() . '/inc/last_login.php';
 
 require get_template_directory() . '/inc/utils.php';
 
+require get_template_directory() . '/inc/acf.php';
+
 flush_rewrite_rules();
 
 ?>

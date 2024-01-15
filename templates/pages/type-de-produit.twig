@@ -1,0 +1,56 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+	{# Hero #}
+	{% include "components/hero.twig" with { image: post.thumbnail, title: post.title } %}
+
+	{# List products #}
+	<section class="py-section-mobile lg:py-section-desktop">
+		<div class="container">
+			<ul class="grid gap-y-10 gap-x-6 md:grid-cols-2 md:gap-y-24 lg:grid-cols-3">
+				{% for product in products %}
+					{% if product.terms('type-de-produit')[0].id == post.id %}
+						<li>{% include "components/card-product.twig" %}</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	</section>
+
+
+	{# Other product types #}
+	<section v-scope="Slider({slidesOnDesktop: 'auto'})" @vue:mounted="initSlider($el)" class="slider-tax-type-product">
+		<div class="container lg:flex lg:items-center lg:justify-between">
+			<h2 class="text-xl lg:text-2xl font-semibold">Explorez nos autres produits</h2>
+			{% include "components/nav-slider.twig" %}
+		</div>
+
+		{# Slider #}
+		<div class="mt-6 pb-section-mobile lg:pb-section-desktop">
+			<div class="swiper slider">
+				<div class="swiper-wrapper">
+					{% for type in product_types %}
+						{% if type.id != post.id %}
+							<a href="{{type.link}}" class="swiper-slide">
+								<div class="w-full aspect-[4/5] rounded-md overflow-hidden bg-black">
+									{{ function('wp_get_attachment_image', type.thumbnail.id, 'medium', false, {class: 'grayscale-[20%] opacity-90 w-full h-full object-cover transition-all duration-500'}) }}
+								</div>
+								<div class="mt-4 flex gap-2 items-center">
+									<div class="circle w-2.5 h-2.5 border border-black rounded-full bg-black bg-opacity-0 transition-colors duration-300"></div>
+									<p class="font-bold">{{type.title}}</p>
+								</div>
+							</a>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	{# Section Question/conseil #}
+	{% include "components/section-question.twig" %}
+
+
+{% endblock %}

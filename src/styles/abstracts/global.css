@@ -2,6 +2,10 @@
 	@apply bg-orange text-white;
 }
 
+html {
+	scroll-padding-top: 120px;
+}
+
 body {
 	@apply bg-white text-black font-medium text-base;
 	-webkit-font-smoothing: antialiased;
@@ -19,5 +23,5 @@ body {
 }
 
 .container {
-	max-width: 1600px;
+	max-width: 1536px;
 }

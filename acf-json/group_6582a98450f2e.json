@@ -170,7 +170,7 @@
                 {
                     "key": "field_6582ac10c260c",
                     "label": "Bouton",
-                    "name": "bouton",
+                    "name": "button",
                     "aria-label": "",
                     "type": "group",
                     "instructions": "",
@@ -214,7 +214,7 @@
                         {
                             "key": "field_6582ac43c260e",
                             "label": "Lien",
-                            "name": "lien",
+                            "name": "link",
                             "aria-label": "",
                             "type": "link",
                             "instructions": "Cocher la case permettant d'ouvrir dans un nouvel onglet uniquement si le lien redirige vers un site externe",
@@ -378,5 +378,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1703063272
+    "modified": 1704797098
 }

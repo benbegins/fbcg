@@ -1,0 +1,57 @@
+/* Global */
+.button-nav:disabled {
+	@apply opacity-25;
+}
+
+/* Home Product Categories */
+.slider-home-product_cats {
+	.slider.swiper {
+		@apply px-5;
+	}
+
+	.swiper-slide {
+		@apply lg:w-[calc(25vw-3rem)] 2xl:w-[calc(1535px/4-3rem)];
+
+		&:hover {
+			.circle {
+				@apply bg-opacity-100;
+			}
+
+			img {
+				@apply scale-[1.02] opacity-100 grayscale-0;
+			}
+		}
+	}
+}
+
+/* Page taxonomy product type */
+.slider-tax-type-product {
+	.slider.swiper {
+		@apply px-5 lg:px-12 2xl:px-[calc((100vw-1535px)/2+3rem)];
+	}
+
+	.swiper-slide {
+		@apply lg:w-[calc(25vw-2.65rem)] 2xl:w-[calc(1535px/4-2.65rem)];
+
+		&:hover {
+			.circle {
+				@apply bg-opacity-100;
+			}
+
+			img {
+				@apply scale-[1.02] opacity-100 grayscale-0;
+			}
+		}
+	}
+}
+
+/* Page single product - related products slider */
+.slider-related-products {
+	.slider.swiper {
+		@apply px-5 lg:px-12 2xl:px-[calc((100vw-1535px)/2+3rem)];
+	}
+
+	.swiper-slide {
+		@apply lg:w-[calc(33vw-2.75rem)] 2xl:w-[calc(1535px/3-3rem)];
+	}
+}

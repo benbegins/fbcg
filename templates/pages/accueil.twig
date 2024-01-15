@@ -4,9 +4,9 @@
 
 	{# Hero #}
 	<section class="pt-header relative lg:h-[90dvh] lg:max-h-[66vw] lg:text-white lg:flex lg:items-end lg:pb-12">
-		<div class="container">
+		<div class="container" data-parallax data-speed="10">
 			<h1 class="text-3xl lg:text-4xl font-extrabold tracking-tighter leading-none mb-6 lg:mb-8 xl:w-3/4">Votre spécialiste en aluminium, bronze, laiton, cuivre, fonte &amp; plastiques techniques</h1>
-			{% include "components/btns.twig" with {primary: true, text: 'Découvrez nos produits', link: product_archive_link} %}
+			{% include "components/btns.twig" with {primary: true, text: 'Découvrez nos produits', link: products_page} %}
 			<div class="lg:hidden"></div>
 		</div>
 		{# Video #}
@@ -24,30 +24,103 @@
 
 
 	{# Introduction #}
-	<section class="relative pt-section-mobile sm:py-section-mobile lg:py-section-desktop">
+	<section class="bg-white relative pt-section-mobile sm:py-section-mobile lg:py-section-desktop">
 		<div class="container lg:py-[4vw]">
 			<p class="font-semibold text-xl lg:text-2xl lg:text-center lg:w-1/2 lg:mx-auto">{{ post.meta('introduction') }}</p>
 		</div>
-		<img src="{{theme.link}}/src/images/shapes/shape-01.png" alt="" class="hidden lg:inline lg:w-1/5 lg:absolute lg:top-1/2 lg:left-0 lg:-translate-y-1/2">
+		<img data-parallax data-speed="-15" src="{{theme.link}}/src/images/shapes/shape-01.png" alt="" class="hidden lg:inline lg:w-1/5 lg:absolute lg:top-1/2 lg:left-0 lg:-translate-y-1/2">
 
-		<img src="{{theme.link}}/src/images/shapes/shape-02.png" alt="" class="w-1/2 ml-auto sm:hidden lg:inline lg:w-1/5 lg:absolute lg:top-1/2 lg:right-0 lg:-translate-y-1/2">
+		<img data-parallax data-speed="10" src="{{theme.link}}/src/images/shapes/shape-02.png" alt="" class="w-1/2 ml-auto sm:hidden lg:inline lg:w-1/5 lg:absolute lg:top-1/2 lg:right-0 lg:-translate-y-1/2">
 	</section>
 
 
 	{# Produits #}
-	<section v-scope="Slider()" class="pb-section-mobile lg:pb-section-desktop">
+	<section v-scope="Slider({slidesOnDesktop: 'auto'})" @vue:mounted="initSlider($el)" class="relative slider-home-product_cats">
 		<div class="container">
-			<h2 class="text-xl lg:text-2xl font-semibold mb-2 lg:mb-4">Tous nos produits</h2>
-			<p>Grace à notre capacité de coupe allant jusqu'à 1040 mm d'épaisseur et jusqu'au diamètre 1010mm, nous pouvons vous proposer du sciage unitaire, petite et grande série.</p>
+			<div class="lg:flex lg:flex-col lg:justify-between lg:w-1/4 lg:pr-6 lg:absolute lg:h-full lg:max-w-[calc(1536px/4)]">
+				<div>
+					<h2 class="text-xl lg:text-2xl font-semibold mb-2 lg:mb-4">Tous nos produits</h2>
+					<p class="leading-relaxed">{{ post.meta('products_presentation') }}</p>
+				</div>
+				{% include "components/nav-slider.twig" %}
+			</div>
 		</div>
-		<div class="swiper">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">1</div>
-				<div class="swiper-slide">2</div>
-				<div class="swiper-slide">3</div>
+		{# Slider #}
+		<div class="mt-6 lg:mt-0 lg:relative lg:ml-auto lg:top-0 lg:right-0 lg:w-3/4 lg:pl-6 2xl:w-[calc((100vw-1536px)/2+1152px)]">
+			<div class="swiper slider">
+				<div class="swiper-wrapper">
+					{% for type in product_types %}
+						<a href="{{type.link}}" class="swiper-slide">
+							<div class="w-full aspect-[4/5] rounded-md overflow-hidden bg-black">
+								{{ function('wp_get_attachment_image', type.thumbnail.id, 'medium_large', false, {class: 'grayscale-[20%] opacity-90 w-full h-full object-cover transition-all duration-500'}) }}
+							</div>
+							<div class="mt-4 flex gap-2 items-center">
+								<div class="circle w-2.5 h-2.5 border border-black rounded-full bg-black bg-opacity-0 transition-colors duration-300"></div>
+								<p class="font-bold">{{type.title}}</p>
+							</div>
+						</a>
+					{% endfor %}
+				</div>
 			</div>
 		</div>
 	</section>
+	<div class="pt-section-mobile lg:pt-section-desktop"></div>
+
+
+	{# A la une #}
+	{% set news = post.meta('news') %}
+	{% if news and news.display_news %}
+		<section class="relative z-10 bg-blue text-white py-section-mobile lg:py-section-desktop">
+			<div class="container lg:grid lg:grid-cols-12 lg:gap-6">
+				<h2 class="text-xl lg:text-2xl font-semibold mb-6 lg:col-span-3">À la une</h2>
+				<div class="w-full aspect-[3/2] rounded-md overflow-hidden lg:col-span-4">
+					{{ function('wp_get_attachment_image', news.visuel.id, 'medium_large', false, {class: 'w-full h-full object-cover'}) }}
+				</div>
+				<div class="mt-6 lg:mt-0 lg:col-span-5">
+					<h3 class="mb-2 lg:mb-4 font-semibold text-md lg:text-lg">{{ news.title }}</h3>
+					<p class="mb-6 lg:mb-8 leading-relaxed">{{ news.description }}</p>
+					{% set button = news.button %}
+					{% if button.link and button.text %}
+						{% include "components/btns.twig" with { primary: true, white: true, text: button.text, link: button.link } %}
+					{% endif %}
+				</div>
+			</div>
+
+			<div class="absolute inset-0 -z-10 mix-blend-soft-light opacity-50 overflow-hidden">
+				<img data-parallax data-speed="10" data-scale="1.15" src="{{theme.link}}/src/images/textures/text-bg.jpg" alt="" class="w-full h-full object-cover">
+			</div>
+		</section>
+	{% endif %}
+
+
+	{# En chiffres #}
+	{% set key_numbers = post.meta('key_numbers') %}
+	{% if key_numbers %}
+		<section class="py-section-mobile lg:py-section-desktop">
+			<div class="container lg:grid lg:grid-cols-4 lg:gap-6">
+				<div class="lg:pr-6">
+					<h2 class="text-xl lg:text-2xl font-semibold mb-2 lg:mb-4">La FBCG en chiffres</h2>
+					<p class="mb-6 lg:mb-8 leading-relaxed">{{ key_numbers.presentation }}</p>
+					{% include "components/btns.twig" with { primary: true, text: 'En savoir plus', link: about_page } %}
+				</div>
+				<div class="hidden lg:col-span-3 lg:grid lg:grid-cols-2 gap-6">
+					{% include "components/key-number.twig" with { icon: "clients", text: "clients", value: key_numbers.clients } %}
+					{% include "components/key-number.twig" with { icon: "storage", text: "de stockage", value: key_numbers.storage } %}
+					{% include "components/key-number.twig" with { icon: "experience", text: "années d'expérience", value: key_numbers.experience } %}
+					{% include "components/key-number.twig" with { icon: "stock", text: "références en stock", value: key_numbers.stock } %}
+				</div>
+			</div>
+			<div class="flex overflow-x-auto lg:hidden gap-6 p-6">
+				{% include "components/key-number.twig" with { icon: "clients", text: "clients", value: key_numbers.clients } %}
+				{% include "components/key-number.twig" with { icon: "storage", text: "de stockage", value: key_numbers.storage } %}
+				{% include "components/key-number.twig" with { icon: "experience", text: "années d'expérience", value: key_numbers.experience } %}
+				{% include "components/key-number.twig" with { icon: "stock", text: "références en stock", value: key_numbers.stock } %}
+			</div>
+		</section>
+	{% endif %}
+
+
+	{% include "components/section-map.twig" %}
 
 
 {% endblock %}

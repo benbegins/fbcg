@@ -1,0 +1,32 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+	{# Hero #}
+	{% include "components/hero.twig" with { image: post.thumbnail, title: "Tous nos <br class='sm:hidden'>produits", subtitle: "Avec une capacité de coupe exceptionnelle, notre service de sciage sur mesure s'adapte parfaitement à toutes vos exigences." } %}
+
+	<section class="bg-white py-section-mobile lg:py-section-desktop">
+		<div class="container relative z-10">
+			<ul class="grid gap-8 sm:grid-cols-2 sm:gap-y-12">
+				{% for type in product_types %}
+					<li class="flex flex-col lg:grid lg:grid-cols-2 relative bg-white border border-gray rounded-md before:absolute before:inset-0 before:-z-10 before:block before:translate-x-1.5 before:translate-y-1.5 before:rounded-md before:bg-gray ">
+						<a href="{{type.link}}" class="block flex-none w-full aspect-video lg:aspect-square lg:h-full rounded-t-md overflow-hidden lg:rounded-l-md lg:rounded-tr-none xl:pr-6">
+							{{ function('wp_get_attachment_image', type.thumbnail.id, 'medium', false, {class: 'w-full h-full object-cover'}) }}
+						</a>
+						<div class="h-full p-6 flex flex-col gap-2 justify-between lg:ml-8 lg:p-8 lg:h-auto lg:pl-0">
+							<div>
+								<h2 class="text-xl lg:text-2xl font-semibold">{{ type.title }}</h2>
+								<p class="mb-6">{{ type.description }}</p>
+							</div>
+							<div>{% include "components/btns.twig" with { primary: true, text: 'Explorez notre sélection', link: type.link } %}</div>
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</section>
+
+	{# Section Question/conseil #}
+	{% include "components/section-question.twig" %}
+
+{% endblock %}

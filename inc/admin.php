@@ -14,7 +14,7 @@ add_action('admin_menu', 'post_remove');
 /**
  *  Remove editor support for pages
 */
-function remove_editor() {
-  remove_post_type_support('page', 'editor');
-}
-add_action('admin_init', 'remove_editor');
+// function remove_editor() {
+//   remove_post_type_support('page', 'editor');
+// }
+// add_action('admin_init', 'remove_editor');

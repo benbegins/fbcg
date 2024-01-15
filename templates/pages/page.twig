@@ -2,6 +2,13 @@
 
 {% block content %}
 
-    <h1>Page</h1>
+	<section class="pt-header">
+		<div class="container py-section-mobile lg:py-section-desktop">
+			<div class="lg:w-2/3 lg:mx-auto">
+				<h1 class="text-3xl lg:text-4xl font-extrabold tracking-tighter leading-none">{{ post.post_title }}</h1>
+				<div class="wysiwyg">{{post.content}}</div>
+			</div>
+		</div>
+	</section>
 
 {% endblock %}
