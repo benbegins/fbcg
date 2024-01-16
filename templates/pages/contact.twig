@@ -46,6 +46,8 @@
 
 					</div>
 					<p class="bg-gray text-center leading-tight text-orange p-3 rounded-md" v-text="errorMessage" v-if="errorMessage.length > 0"></p>
+					<p class="bg-gray text-center leading-tight text-blue p-3 rounded-md" v-if="emailSent" v-text="emailStatusMessage"></p>
+					<p class="bg-gray text-center leading-tight text-blue p-3 rounded-md" v-if="emailIsSending">Envoi en cours...</p>
 				</div>
 			</div>
 		</section>

@@ -23,8 +23,12 @@ function Contact() {
 			message: false,
 			rgpd: false,
 		},
+		// States
+		emailSent: false,
+		emailIsSending: false,
+		emailStatusMessage: "",
 		// API
-		apiUrl: "/wp-json/bemy/v1",
+		apiUrl: "/wp-json/bemy/v1/contact",
 
 		logInputs() {
 			console.log(
@@ -41,6 +45,7 @@ function Contact() {
 		},
 
 		submitForm() {
+			this.emailSent = false
 			this.resetErrors()
 			this.checkForm()
 		},
@@ -139,6 +144,8 @@ function Contact() {
 		},
 
 		sendEmail() {
+			this.emailIsSending = true
+
 			const data = {
 				firstname: this.fields.firstname,
 				lastname: this.fields.lastname,
@@ -148,17 +155,40 @@ function Contact() {
 				zipcode: this.fields.zipcode,
 				phone: this.fields.phone,
 				message: this.fields.message,
+				"g-recaptcha-response": recaptchaResponse,
 			}
-			console.log(data)
 
 			axios
 				.post(this.apiUrl, data)
 				.then((response) => {
-					console.log(response)
+					if (response.data.success) {
+						this.emailIsSending = false
+						this.emailSent = true
+						this.emailStatusMessage = response.data.message
+						this.resetFields()
+					} else {
+						this.emailIsSending = false
+						this.emailSent = false
+						this.emailStatusMessage =
+							"Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer plus tard."
+						this.resetFields()
+					}
 				})
 				.catch((error) => {
 					console.log(error)
 				})
+		},
+
+		resetFields() {
+			this.fields.firstname = ""
+			this.fields.lastname = ""
+			this.fields.company = ""
+			this.fields.email = ""
+			this.fields.city = ""
+			this.fields.zipcode = ""
+			this.fields.phone = ""
+			this.fields.message = ""
+			this.fields.rgpd = false
 		},
 	}
 }

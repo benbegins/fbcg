@@ -1,0 +1,64 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+	{# Hero #}
+	<section class="pt-header" v-scope="Contact()">
+		<div class="container pb-section-mobile lg:py-section-desktop lg:grid lg:grid-cols-2 lg:gap-6">
+			<h1 class="font-extrabold text-3xl lg:text-4xl leading-none tracking-tighter mb-6 lg:w-5/6">Votre partenaire de confiance depuis 1926</h1>
+			{% set intro = post.meta('intro') %}
+			{% if intro %}
+				<div class="lg:mt-3">
+					<h2 class="text-lg font-semibold mb-6 lg:mb-8 leading-tight">{{intro.part_1}}</h2>
+					<p class="leading-relaxed">{{intro.part_2}}</p>
+				</div>
+			{% endif %}
+		</div>
+		<div class="container">
+			<div class="overflow-hidden rounded-md">
+				<div data-parallax data-speed="10" data-scale="1.07" class="w-full aspect-video overflow-hidden">{{ function('wp_get_attachment_image', post.meta('photo_team').id, '1536x1536', false, {'class': 'w-full h-full object-cover'}) }}</div>
+			</div>
+		</div>
+	</section>
+
+	{# Mot d'ordre #}
+	<section class="relative pt-section-mobile sm:py-section-mobile lg:py-section-desktop">
+		<div class="container text-center">
+			<div class="md:w-2/3 mx-auto lg:w-1/2">
+				<p class="mb-2 lg:mb-4">Notre mot d’ordre :
+					<strong>la réactivité.</strong>
+				</p>
+				<h2 class="text-xl lg:text-2xl font-semibold mb-6 lg:mb-8 leading-tight">Nous nous efforçons chaque jour à vous accompagner au mieux dans l’urgence des demandes.
+					<span class="text-orange">Une commande validée le matin peut être livrée le lendemain*</span>
+				</h2>
+				<p class="opacity-50 text-sm">
+					<sup>*</sup>dans la limite des stocks disponibles</p>
+			</div>
+		</div>
+		<img data-parallax data-speed="-5" src="{{theme.link}}/src/images/shapes/shape-01.png" alt="" class="hidden lg:inline lg:w-1/5 lg:absolute lg:top-1/2 lg:left-0 lg:-translate-y-1/2">
+		<img data-parallax data-speed="10" src="{{theme.link}}/src/images/shapes/shape-02.png" alt="" class="w-1/2 ml-auto sm:hidden lg:inline lg:w-1/5 lg:absolute lg:top-1/2 lg:right-0 lg:-translate-y-1/2">
+	</section>
+
+	{# Chiffres clés #}
+	{% set key_numbers = options.key_numbers %}
+	{% if key_numbers %}
+		<section class="py-section-mobile lg:py-section-desktop bg-blue bg-opacity-5">
+			<div class="container lg:grid lg:grid-cols-4 lg:gap-6">
+				<h2 class="text-xl lg:text-2xl font-semibold mb-2 lg:mb-0">La FBCG en chiffres</h2>
+				<p class="leading-relaxed lg:col-span-2">{{ key_numbers.presentation }}</p>
+			</div>
+			<div class="lg:container lg:max-w-screen-2xl">
+				<div class="flex overflow-x-auto lg:overflow-visible gap-6 p-6 lg:p-0 lg:mt-12 lg:grid lg:grid-cols-4">
+					{% include "components/key-number.twig" with { icon: "clients", text: "clients", value: key_numbers.clients } %}
+					{% include "components/key-number.twig" with { icon: "storage", text: "de stockage", value: key_numbers.storage ~ '<span class="text-xl">m<sup>2</sup></span>' } %}
+					{% include "components/key-number.twig" with { icon: "experience", text: "années d'expérience", value: key_numbers.experience } %}
+					{% include "components/key-number.twig" with { icon: "stock", text: "références en stock", value: key_numbers.stock } %}
+				</div>
+			</div>
+		</section>
+	{% endif %}
+
+
+	{% include "components/section-question.twig" %}
+
+{% endblock %}

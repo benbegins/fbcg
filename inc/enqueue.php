@@ -7,8 +7,13 @@ if ( ! function_exists( 'bemy_scripts' ) ) {
 
 		// Style
 		wp_enqueue_style( 'bemy-css', get_template_directory_uri() . '/dist/style.css', array(), wp_get_theme()->get( 'Version' ) );
+
+		// Axios
 		wp_enqueue_script( 'axios', "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js", array(), false, true );
+		
+		// Main JS Script
 		wp_enqueue_script( 'bemy-script', get_template_directory_uri() . '/dist/bemy.umd.js', array('axios'), wp_get_theme()->get( 'Version' ), true );
+
 		// Remove gutenberg css
 		wp_dequeue_style( 'wp-block-library' );
 

@@ -94,7 +94,7 @@
 
 
 	{# En chiffres #}
-	{% set key_numbers = post.meta('key_numbers') %}
+	{% set key_numbers = options.key_numbers %}
 	{% if key_numbers %}
 		<section class="py-section-mobile lg:py-section-desktop">
 			<div class="container lg:grid lg:grid-cols-4 lg:gap-6">
@@ -104,15 +104,15 @@
 					{% include "components/btns.twig" with { primary: true, text: 'En savoir plus', link: about_page } %}
 				</div>
 				<div class="hidden lg:col-span-3 lg:grid lg:grid-cols-2 gap-6">
-					{% include "components/key-number.twig" with { icon: "clients", text: "clients", value: key_numbers.clients } %}
-					{% include "components/key-number.twig" with { icon: "storage", text: "de stockage", value: key_numbers.storage } %}
-					{% include "components/key-number.twig" with { icon: "experience", text: "années d'expérience", value: key_numbers.experience } %}
-					{% include "components/key-number.twig" with { icon: "stock", text: "références en stock", value: key_numbers.stock } %}
+					{% include "components/key-number.twig" with {home: true, icon: "clients", text: "clients", value: key_numbers.clients } %}
+					{% include "components/key-number.twig" with {home: true, icon: "storage", text: "de stockage", value: key_numbers.storage ~ '<span class="text-xl">m<sup>2</sup></span>' } %}
+					{% include "components/key-number.twig" with {home: true, icon: "experience", text: "années d'expérience", value: key_numbers.experience } %}
+					{% include "components/key-number.twig" with {home: true, icon: "stock", text: "références en stock", value: key_numbers.stock } %}
 				</div>
 			</div>
 			<div class="flex overflow-x-auto lg:hidden gap-6 p-6">
 				{% include "components/key-number.twig" with { icon: "clients", text: "clients", value: key_numbers.clients } %}
-				{% include "components/key-number.twig" with { icon: "storage", text: "de stockage", value: key_numbers.storage } %}
+				{% include "components/key-number.twig" with { icon: "storage", text: "de stockage", value: key_numbers.storage ~ '<span class="text-xl">m<sup>2</sup></span>' } %}
 				{% include "components/key-number.twig" with { icon: "experience", text: "années d'expérience", value: key_numbers.experience } %}
 				{% include "components/key-number.twig" with { icon: "stock", text: "références en stock", value: key_numbers.stock } %}
 			</div>
