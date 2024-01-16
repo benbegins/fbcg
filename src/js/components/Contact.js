@@ -155,7 +155,6 @@ function Contact() {
 				zipcode: this.fields.zipcode,
 				phone: this.fields.phone,
 				message: this.fields.message,
-				"g-recaptcha-response": recaptchaResponse,
 			}
 
 			axios
