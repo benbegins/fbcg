@@ -6420,8 +6420,7 @@ function kp() {
         city: this.fields.city,
         zipcode: this.fields.zipcode,
         phone: this.fields.phone,
-        message: this.fields.message,
-        "g-recaptcha-response": recaptchaResponse
+        message: this.fields.message
       };
       axios.post(this.apiUrl, n).then((e) => {
         e.data.success ? (this.emailIsSending = !1, this.emailSent = !0, this.emailStatusMessage = e.data.message, this.resetFields()) : (this.emailIsSending = !1, this.emailSent = !1, this.emailStatusMessage = "Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer plus tard.", this.resetFields());
