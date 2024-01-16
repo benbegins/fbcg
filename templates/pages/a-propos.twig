@@ -39,6 +39,20 @@
 		<img data-parallax data-speed="10" src="{{theme.link}}/src/images/shapes/shape-02.png" alt="" class="w-1/2 ml-auto sm:hidden lg:inline lg:w-1/5 lg:absolute lg:top-1/2 lg:right-0 lg:-translate-y-1/2">
 	</section>
 
+
+	{# Équipes #}
+	{% set teams = post.meta('teams') %}
+	{% if teams %}
+		<section class="pb-section-mobile lg:pb-section-desktop">
+			<div class="container grid gap-14 lg:gap-32">
+				{% for index, team in teams %}
+					{% include "components/section-team.twig" %}
+				{% endfor %}
+			</div>
+		</section>
+	{% endif %}
+
+
 	{# Chiffres clés #}
 	{% set key_numbers = options.key_numbers %}
 	{% if key_numbers %}
@@ -57,6 +71,19 @@
 			</div>
 		</section>
 	{% endif %}
+
+
+	<section class="py-section-mobile lg:py-section-desktop">
+		<div class="container grid gap-14 lg:grid-cols-2 lg:gap-6 lg:items-center">
+			<div class="rounded-md overflow-hidden">
+				<iframe class="w-full aspect-video" src="https://www.youtube-nocookie.com/embed/AFnDMWsTtxw?si=d8jowgVywImnNPcC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+			</div>
+			<div class="text-center flex flex-col gap-4 items-center">
+				<img width="53" src="{{theme.link}}/src/images/icons/icon-recycling.svg" alt="Icone recyclage">
+				<p class="font-extrabold w-2/3 max-w-xs mx-auto leading-relaxed">FBCG recycle ses copeaux pour un meilleur environnement !</p>
+			</div>
+		</div>
+	</section>
 
 
 	{% include "components/section-question.twig" %}

@@ -33,10 +33,12 @@ export default {
 		},
 
 		extend: {
+			aspectRatio: {
+				"5/3": "5 / 3",
+			},
 			borderRadius: {
 				sm: "0.25rem",
 			},
-
 			padding: {
 				header: "6rem",
 				"section-mobile": "3.5rem",

@@ -155,7 +155,7 @@
                     "name": "photo",
                     "aria-label": "",
                     "type": "image",
-                    "instructions": "800px de largeur minimum",
+                    "instructions": "800px de largeur minimum. Photo au format paysage (les photos en format portrait seront tronqués)",
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -211,5 +211,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1705396207
+    "modified": 1705411711
 }

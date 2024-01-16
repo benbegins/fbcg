@@ -47,7 +47,7 @@
 			{# Documents #}
 			<div class="lg:col-span-2">
 				{% for index, type in doc_type %}
-					<h2 class="doc_type text-3xl lg:text-4xl font-extrabold tracking-tighter leading-none{% if index != 0 %} pt-section-mobile lg:pt-section-desktop{% endif %}">{{type.title}}</h2>
+					<h2 id="{{type.slug}}" class="doc_type text-3xl lg:text-4xl font-extrabold tracking-tighter leading-none{% if index != 0 %} pt-section-mobile lg:pt-section-desktop{% endif %}">{{type.title}}</h2>
 					{% for material in materials %}
 						{% set display_material_title = true %}
 						<ul class="grid gap-4">

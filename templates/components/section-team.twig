@@ -1,0 +1,11 @@
+<div class="grid gap-4 lg:gap-6 lg:grid-cols-2 lg:items-center">
+	<div class="lg:w-5/6{% if index % 2 != 0 %} lg:col-start-2 lg:row-start-1 lg:ml-auto{% endif %}">
+		<h2 class="text-xl lg:text-2xl font-semibold mb-2 lg:mb-4">{{team.team_name}}</h2>
+		<p class="leading-relaxed">{{team.presentation}}</p>
+	</div>
+	<div class="overflow-hidden rounded-md{% if index % 2 != 0 %} lg:col-start-1 lg:row-start-1{% endif %}">
+		<div data-parallax data-speed="5" data-scale="1.07" class="w-full aspect-[3/2]">
+			{{ function('wp_get_attachment_image', team.photo.id, 'medium_large', false, {class: 'w-full h-full object-cover'}) }}
+		</div>
+	</div>
+</div>
