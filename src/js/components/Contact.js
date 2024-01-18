@@ -103,7 +103,7 @@ function Contact() {
 		},
 
 		checkEmail() {
-			const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+			const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
 			if (regex.test(this.fields.email)) {
 				this.errors.email = false
 			} else {
