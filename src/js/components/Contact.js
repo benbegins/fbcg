@@ -160,6 +160,7 @@ function Contact() {
 			axios
 				.post(this.apiUrl, data)
 				.then((response) => {
+					console.log(response)
 					if (response.data.success) {
 						this.emailIsSending = false
 						this.emailSent = true
