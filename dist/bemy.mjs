@@ -6393,11 +6393,7 @@ function kp() {
       );
     },
     submitForm() {
-      grecaptcha.ready(function() {
-        grecaptcha.execute("6LcDsFEpAAAAALYFPI2wOtGraR1_VdGg199hCQIH", { action: "submit" }).then(function(n) {
-          console.log(n);
-        });
-      }), this.emailSent = !1, this.resetErrors(), this.checkForm();
+      this.emailSent = !1, this.resetErrors(), this.checkForm();
     },
     checkForm() {
       this.fields.firstname === "" && (this.errors.firstname = !0), this.fields.lastname === "" && (this.errors.lastname = !0), this.fields.company === "" && (this.errors.company = !0), this.fields.email === "" ? this.errors.email = !0 : this.checkEmail(), this.fields.city === "" && (this.errors.city = !0), this.fields.zipcode === "" && (this.errors.zipcode = !0), this.fields.phone === "" ? this.errors.phone = !0 : this.checkPhone(), this.fields.message === "" ? this.errors.message = !0 : this.checkTextarea(), this.fields.rgpd === !1 && (this.errors.rgpd = !0), this.errors.firstname === !1 && this.errors.lastname === !1 && this.errors.company === !1 && this.errors.email === !1 && this.errors.city === !1 && this.errors.zipcode === !1 && this.errors.phone === !1 && this.errors.message === !1 && this.errors.rgpd === !1 ? (this.errorMessage = "", this.sendEmail()) : this.errorMessage = "Veuillez compléter tous les champs pour envoyer le formulaire.";
@@ -6415,21 +6411,25 @@ function kp() {
       this.errorMessage = "", this.errors.firstname = !1, this.errors.lastname = !1, this.errors.company = !1, this.errors.email = !1, this.errors.city = !1, this.errors.zipcode = !1, this.errors.phone = !1, this.errors.message = !1, this.errors.rgpd = !1;
     },
     sendEmail() {
-      this.emailIsSending = !0;
-      const n = {
-        firstname: this.fields.firstname,
-        lastname: this.fields.lastname,
-        company: this.fields.company,
-        email: this.fields.email,
-        city: this.fields.city,
-        zipcode: this.fields.zipcode,
-        phone: this.fields.phone,
-        message: this.fields.message
-      };
-      axios.post(this.apiUrl, n).then((e) => {
-        console.log(e), e.data.success ? (this.emailIsSending = !1, this.emailSent = !0, this.emailStatusMessage = e.data.message, this.resetFields()) : (this.emailIsSending = !1, this.emailSent = !1, this.emailStatusMessage = "Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer plus tard.", this.resetFields());
-      }).catch((e) => {
-        console.log(e);
+      grecaptcha.ready(function() {
+        grecaptcha.execute("6LcDsFEpAAAAALYFPI2wOtGraR1_VdGg199hCQIH", { action: "submit" }).then(function(n) {
+          console.log(n), this.emailIsSending = !0;
+          const e = {
+            firstname: this.fields.firstname,
+            lastname: this.fields.lastname,
+            company: this.fields.company,
+            email: this.fields.email,
+            city: this.fields.city,
+            zipcode: this.fields.zipcode,
+            phone: this.fields.phone,
+            message: this.fields.message
+          };
+          axios.post(this.apiUrl, e).then((t) => {
+            console.log(t), t.data.success ? (this.emailIsSending = !1, this.emailSent = !0, this.emailStatusMessage = t.data.message, this.resetFields()) : (this.emailIsSending = !1, this.emailSent = !1, this.emailStatusMessage = "Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer plus tard.", this.resetFields());
+          }).catch((t) => {
+            console.log(t);
+          });
+        });
       });
     },
     resetFields() {
