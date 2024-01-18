@@ -9,7 +9,7 @@
 				<p class="leading-relaxed">Remplissez le formulaire ou appelez-nous directement par téléphone pour discuter de vos besoins spécifiques en métaux non-ferreux, obtenir des informations techniques détaillées ou explorer des solutions sur mesure. Notre équipe est là pour vous aider,  nous sommes impatients de collaborer avec vous et de répondre à toutes vos questions.</p>
 			</div>
 			<div class="pt-section-mobile lg:pt-0">
-				<form class="grid gap-4 lg:gap-6">
+				<div class="grid gap-4 lg:gap-6">
 					<div class="grid gap-4 lg:gap-6 lg:grid-cols-2">
 						{% include "components/input.twig" with { type: 'text', label: 'Prénom', name: 'firstname'} %}
 						{% include "components/input.twig" with { type: 'text', label: 'Nom', name: 'lastname'} %}
@@ -48,7 +48,7 @@
 					<p class="bg-gray text-center leading-tight text-orange p-3 rounded-md" v-text="errorMessage" v-if="errorMessage.length > 0"></p>
 					<p class="bg-gray text-center leading-tight text-blue p-3 rounded-md" v-if="emailSent" v-text="emailStatusMessage"></p>
 					<p class="bg-gray text-center leading-tight text-blue p-3 rounded-md" v-if="emailIsSending">Envoi en cours...</p>
-				</form>
+				</div>
 			</div>
 		</section>
 
