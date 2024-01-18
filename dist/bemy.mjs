@@ -6412,7 +6412,7 @@ function kp() {
     },
     sendEmail() {
       grecaptcha.ready(() => {
-        grecaptcha.execute("6LcDsFEpAAAAALYFPI2wOtGraR1_VdGg199hCQIX", { action: "submit" }).then((n) => {
+        grecaptcha.execute("6LcDsFEpAAAAALYFPI2wOtGraR1_VdGg199hCQIH", { action: "submit" }).then((n) => {
           this.emailIsSending = !0;
           const e = {
             firstname: this.fields.firstname,

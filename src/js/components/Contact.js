@@ -145,7 +145,7 @@ function Contact() {
 
 		sendEmail() {
 			grecaptcha.ready(() => {
-				grecaptcha.execute("6LcDsFEpAAAAALYFPI2wOtGraR1_VdGg199hCQIX", { action: "submit" }).then((token) => {
+				grecaptcha.execute("6LcDsFEpAAAAALYFPI2wOtGraR1_VdGg199hCQIH", { action: "submit" }).then((token) => {
 					this.emailIsSending = true
 
 					const data = {
