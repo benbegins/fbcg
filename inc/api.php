@@ -82,7 +82,7 @@ function bemy_contact_form($request) {
     $subject = 'Nouveau message de ' . $firstname . ' ' . $lastname . ' depuis le site FBCG';
 
     $headers = array(
-        'From: ' . $firstname . ' ' . $lastname . ' <' . $email . '>',
+        'From: Site FBCG <website@fbcg.fr>',
         'Reply-To: ' . $firstname . ' ' . $lastname . ' <' . $email . '>',
         'Content-Type: text/html; charset=UTF-8'
     );

@@ -6393,7 +6393,11 @@ function kp() {
       );
     },
     submitForm() {
-      this.emailSent = !1, this.resetErrors(), this.checkForm();
+      grecaptcha.ready(function() {
+        grecaptcha.execute("reCAPTCHA_site_key", { action: "submit" }).then(function(n) {
+          console.log(n);
+        });
+      }), this.emailSent = !1, this.resetErrors(), this.checkForm();
     },
     checkForm() {
       this.fields.firstname === "" && (this.errors.firstname = !0), this.fields.lastname === "" && (this.errors.lastname = !0), this.fields.company === "" && (this.errors.company = !0), this.fields.email === "" ? this.errors.email = !0 : this.checkEmail(), this.fields.city === "" && (this.errors.city = !0), this.fields.zipcode === "" && (this.errors.zipcode = !0), this.fields.phone === "" ? this.errors.phone = !0 : this.checkPhone(), this.fields.message === "" ? this.errors.message = !0 : this.checkTextarea(), this.fields.rgpd === !1 && (this.errors.rgpd = !0), this.errors.firstname === !1 && this.errors.lastname === !1 && this.errors.company === !1 && this.errors.email === !1 && this.errors.city === !1 && this.errors.zipcode === !1 && this.errors.phone === !1 && this.errors.message === !1 && this.errors.rgpd === !1 ? (this.errorMessage = "", this.sendEmail()) : this.errorMessage = "Veuillez compléter tous les champs pour envoyer le formulaire.";
