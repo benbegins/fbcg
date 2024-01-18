@@ -55,6 +55,12 @@ add_action('rest_api_init', function () {
                     return !empty( $param );
                 }
             ],
+            'g-recaptcha-response' => [
+                'required' => true,
+                'validate_callback' => function($param, $request, $key) {
+                    return !empty( $param );
+                }
+            ]
         ],
         'callback' => 'bemy_contact_form',
     ));
@@ -72,6 +78,23 @@ function bemy_contact_form($request) {
     $zipcode = sanitize_text_field( $data['zipcode'] );
     $phone = sanitize_text_field( $data['phone'] );
     $message = sanitize_textarea_field( $data['message'] );
+    $recaptcha = sanitize_text_field( $data['g-recaptcha-response'] );
+
+    // Check if recaptcha is valid
+    $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+    $recaptcha_secret = RECAPTCHA_SECRET_KEY;
+    $recaptcha_response = $recaptcha;
+    $recaptcha = wp_remote_post( $recaptcha_url, array(
+        'body' => array(
+            'secret' => $recaptcha_secret,
+            'response' => $recaptcha_response
+        )
+    ) );
+    $recaptcha = json_decode( $recaptcha['body'] );
+    if ( !$recaptcha->success ) {
+        return new WP_REST_Response( array( 'success' => false, 'message' => 'Le captcha n\'est pas valide.' ), 200 );
+    }
+
 
     // Get the email address from the options page
     $email_fbcg = get_field('contact_infos', 'options')['email'];
