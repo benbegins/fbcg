@@ -2,14 +2,14 @@
 	<div class="flex flex-col gap-2">
 		<label for="{{name}}" class="text-sm">{{label}}<sup>*</sup>
 		</label>
-		<input v-model="fields.{{name}}" type="{{type}}" name="{{name}}" id="{{name}}" {% if name == 'email' %} @change="checkEmail" {% endif%} {% if name == 'phone' %} @change="checkPhone" {% endif%} class="border border-black rounded-md p-3 outline-none focus:border-blue" :class="{'border-orange': errors.{{name}}}" required>
+		<input v-model="fields.{{name}}" type="{{type}}" name="{{name}}" id="{{name}}" {% if name == 'email' %} @change="checkEmail" {% endif%} {% if name == 'phone' %} @change="checkPhone" {% endif%} class="border border-black rounded-md p-3 bg-white outline-none focus:border-blue" :class="{'border-orange': errors.{{name}}}" required>
 		<p v-if="errors.{{name}}" class="text-sm text-orange">Veuillez remplir ce champ</p>
 	</div>
 {% else %}
 	<div class="flex flex-col gap-2">
 		<label for="{{name}}" class="text-sm">{{label}}<sup>*</sup>
 		</label>
-		<textarea @change="checkTextarea" v-model="fields.{{name}}" name="{{name}}" id="{{name}}" class="border border-black rounded-md p-3 outline-none focus:border-blue h-44" :class="{'border-orange': errors.{{name}}}" required></textarea>
+		<textarea @change="checkTextarea" v-model="fields.{{name}}" name="{{name}}" id="{{name}}" class="bg-white border border-black rounded-md p-3 outline-none focus:border-blue h-44" :class="{'border-orange': errors.{{name}}}" required></textarea>
 		<p v-if="errors.{{name}}" class="text-sm text-orange">Veuillez remplir ce champ</p>
 	</div>
 {% endif %}
