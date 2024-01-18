@@ -6426,7 +6426,7 @@ function kp() {
             "g-recaptcha-response": n
           };
           axios.post(this.apiUrl, e).then((t) => {
-            t.data.success ? (this.emailIsSending = !1, this.emailSent = !0, this.emailStatusMessage = t.data.message, this.resetFields()) : (this.emailIsSending = !1, this.emailSent = !1, this.emailStatusMessage = "Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer plus tard.", this.resetFields());
+            t.data.success ? (this.emailIsSending = !1, this.emailSent = !0, this.emailStatusMessage = t.data.message, this.resetFields(), console.log(t.data.message)) : (this.emailIsSending = !1, this.emailSent = !1, this.emailStatusMessage = "Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer plus tard.", this.resetFields(), console.log(t.data.message));
           }).catch((t) => {
             console.log(t);
           });

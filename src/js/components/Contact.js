@@ -168,12 +168,14 @@ function Contact() {
 								this.emailSent = true
 								this.emailStatusMessage = response.data.message
 								this.resetFields()
+								console.log(response.data.message)
 							} else {
 								this.emailIsSending = false
 								this.emailSent = false
 								this.emailStatusMessage =
 									"Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer plus tard."
 								this.resetFields()
+								console.log(response.data.message)
 							}
 						})
 						.catch((error) => {
