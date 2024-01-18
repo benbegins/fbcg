@@ -73,7 +73,7 @@
 	{# Brochures #}
 	{% set brochures = post.meta('brochures') %}
 	{% if brochures %}
-		<section class="relative overflow-hidden lg:pb-section-desktop">
+		<section class="relative lg:pb-section-desktop">
 			<div class="container lg:grid lg:grid-cols-2 lg:gap-6">
 				<h2 class="text-xl lg:text-2xl font-semibold mb-2 lg:mb-0">Brochures</h2>
 				<ul class="grid gap-4">
@@ -111,27 +111,35 @@
 
 
 	{# Other products #}
-	<section v-scope="Slider({slidesOnDesktop: 'auto'})" @vue:mounted="initSlider($el)" class="{% if not display_technical_infos %}bg-blue bg-opacity-5 {% endif %}py-section-mobile lg:py-section-desktop slider-related-products">
-		<div class="container lg:flex lg:items-center lg:justify-between">
-			<h2 class="text-xl lg:text-2xl font-semibold">Explorez nos autres nuances</h2>
-			{% include "components/nav-slider.twig" %}
-		</div>
+	{% set is_displayed = false %}
+	{% for product in products %}
+		{% if post.terms('type-de-produit')[0].slug ==  product.terms('type-de-produit')[0].slug and product.id != post.id %}
+			{% set is_displayed = true %}
+		{% endif %}
+	{% endfor %}
+	{% if is_displayed %}
+		<section v-scope="Slider({slidesOnDesktop: 'auto'})" @vue:mounted="initSlider($el)" class="{% if not display_technical_infos %}bg-blue bg-opacity-5 {% endif %}py-section-mobile lg:py-section-desktop slider-related-products">
+			<div class="container lg:flex lg:items-center lg:justify-between">
+				<h2 class="text-xl lg:text-2xl font-semibold">Explorez nos autres nuances</h2>
+				{% include "components/nav-slider.twig" %}
+			</div>
 
-		{# Slider #}
-		<div class="mt-6">
-			<div class="swiper slider">
-				<div class="swiper-wrapper">
-					{% for product in products %}
-						{% if post.terms('type-de-produit')[0].slug ==  product.terms('type-de-produit')[0].slug and product.id != post.id %}
-							<div class="swiper-slide">
-								{% include "components/card-product.twig" %}
-							</div>
-						{% endif %}
-					{% endfor %}
+			{# Slider #}
+			<div class="mt-6">
+				<div class="swiper slider">
+					<div class="swiper-wrapper">
+						{% for product in products %}
+							{% if post.terms('type-de-produit')[0].slug ==  product.terms('type-de-produit')[0].slug and product.id != post.id %}
+								<div class="swiper-slide">
+									{% include "components/card-product.twig" %}
+								</div>
+							{% endif %}
+						{% endfor %}
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
+	{% endif %}
 
 
 	{# Section Question/conseil #}
