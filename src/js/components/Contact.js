@@ -46,9 +46,11 @@ function Contact() {
 
 		submitForm() {
 			grecaptcha.ready(function () {
-				grecaptcha.execute("reCAPTCHA_site_key", { action: "submit" }).then(function (token) {
-					console.log(token)
-				})
+				grecaptcha
+					.execute("6LcDsFEpAAAAALYFPI2wOtGraR1_VdGg199hCQIH", { action: "submit" })
+					.then(function (token) {
+						console.log(token)
+					})
 			})
 			this.emailSent = false
 			this.resetErrors()
