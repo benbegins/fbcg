@@ -33,7 +33,7 @@
 								{% if document.terms('materiau')[0].id == material.id and document.terms('type-de-document')[0].id == type.id %}
 									{% if display_material_title %}
 										<li class="font-semibold leading-tight pl-6 lg:pl-0">
-											<a class="transition-colors duration-200 hover:text-orange " @click="filterOpen = false" href="#{{type.slug}}-{{material.slug}}">{{material.title}}</a>
+											<a class="transition-colors duration-200 lg:hover:text-orange " @click="filterOpen = false" href="#{{type.slug}}-{{material.slug}}">{{material.title}}</a>
 										</li>
 										{% set display_material_title = false %}
 									{% endif %}

@@ -1,15 +1,15 @@
 {% if primary %}
-	<a href="{{link}}" class="relative z-10 inline-block rounded-md {% if white %}bg-white text-blue before:bg-gray after:bg-gray{% else %}bg-orange text-white before:bg-orange-dark after:bg-orange{% endif %} px-8 py-4 font-semibold leading-none  transition-colors duration-300 before:absolute before:inset-0 before:-z-10 before:block before:scale-75 before:rounded-md  before:opacity-0 before:transition-all before:duration-300 after:absolute after:inset-0 after:left-0 after:top-0 after:-z-20 after:translate-x-1.5 after:translate-y-1.5 after:rounded-md  after:bg-opacity-25 after:transition-transform after:duration-300 hover:before:scale-100 hover:before:opacity-100 hover:after:translate-x-0 hover:after:translate-y-0">
+	<a href="{{link}}" class="relative z-10 inline-block rounded-md {% if white %}bg-white text-blue before:bg-gray after:bg-gray{% else %}bg-orange text-white before:bg-orange-dark after:bg-orange{% endif %} px-8 py-4 font-semibold leading-none  transition-colors duration-300 before:absolute before:inset-0 before:-z-10 before:block before:scale-75 before:rounded-md  before:opacity-0 before:transition-all before:duration-300 after:absolute after:inset-0 after:left-0 after:top-0 after:-z-20 after:translate-x-1.5 after:translate-y-1.5 after:rounded-md  after:bg-opacity-25 after:transition-transform after:duration-300 lg:hover:before:scale-100 lg:hover:before:opacity-100 lg:hover:after:translate-x-0 lg:hover:after:translate-y-0">
 		{{text}}
 	</a>
 {% endif %}
 
 {% if secondary %}
-	<a href="{{link}}" class="relative inline-block py-0.5 font-semibold text-orange transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:block after:h-0.5 after:w-full after:origin-left after:bg-orange after:transition-transform after:duration-300 hover:text-orange-dark hover:after:origin-right hover:after:scale-x-0">{{text}}</a>
+	<a href="{{link}}" class="relative inline-block py-0.5 font-semibold text-orange transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:block after:h-0.5 after:w-full after:origin-left after:bg-orange after:transition-transform after:duration-300 lg:hover:text-orange-dark lg:hover:after:origin-right lg:hover:after:scale-x-0">{{text}}</a>
 {% endif %}
 
 {% if download %}
-	<a href="{{link}}" class="relative bg-blue text-white flex items-center justify-between p-4 rounded-md gap-4 font-semibold after:block after:absolute after:inset-0 after:bg-gray after:translate-x-1.5 after:translate-y-1.5 after:rounded-md after:-z-10 after:transition-transform after:duration-300 hover:after:translate-x-0 hover:after:translate-y-0 hover:bg-orange transition-colors duration-300" target="_blank">
+	<a href="{{link}}" class="relative bg-blue text-white flex items-center justify-between p-4 rounded-md gap-4 font-semibold after:block after:absolute after:inset-0 after:bg-gray after:translate-x-1.5 after:translate-y-1.5 after:rounded-md after:-z-10 after:transition-transform after:duration-300 lg:hover:after:translate-x-0 lg:hover:after:translate-y-0 lg:hover:bg-orange transition-colors duration-300" target="_blank">
 		<div class="flex items-center gap-4">
 			<img src="{{theme.link}}/src/images/icons/icon-pdf.svg" alt="Icone document PDF">
 			{{title}}

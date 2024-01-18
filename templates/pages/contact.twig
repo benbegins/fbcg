@@ -40,7 +40,7 @@
 						<p v-if="errors.rgpd" class="text-sm text-orange">Veuillez cocher cette case</p>
 					</div>
 					<div>
-						<button @click="submitForm" class="relative z-10 inline-block rounded-md bg-orange text-white before:bg-orange-dark after:bg-orange px-8 py-4 font-semibold leading-none  transition-colors duration-300 before:absolute before:inset-0 before:-z-10 before:block before:scale-75 before:rounded-md  before:opacity-0 before:transition-all before:duration-300 after:absolute after:inset-0 after:left-0 after:top-0 after:-z-20 after:translate-x-1.5 after:translate-y-1.5 after:rounded-md  after:bg-opacity-25 after:transition-transform after:duration-300 hover:before:scale-100 hover:before:opacity-100 hover:after:translate-x-0 hover:after:translate-y-0">
+						<button @click="submitForm" class="relative z-10 inline-block rounded-md bg-orange text-white before:bg-orange-dark after:bg-orange px-8 py-4 font-semibold leading-none  transition-colors duration-300 before:absolute before:inset-0 before:-z-10 before:block before:scale-75 before:rounded-md  before:opacity-0 before:transition-all before:duration-300 after:absolute after:inset-0 after:left-0 after:top-0 after:-z-20 after:translate-x-1.5 after:translate-y-1.5 after:rounded-md  after:bg-opacity-25 after:transition-transform after:duration-300 lg:hover:before:scale-100 lg:hover:before:opacity-100 lg:hover:after:translate-x-0 lg:hover:after:translate-y-0">
 							Envoyer
 						</button>
 
@@ -52,6 +52,6 @@
 			</div>
 		</section>
 
-		{% include "components/section-map.twig" %}
+		{% include "components/section-map.twig" with {hide_contact_button: true} %}
 
 	{% endblock %}
