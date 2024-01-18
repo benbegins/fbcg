@@ -3,9 +3,9 @@
 {% block content %}
 
 	<section class="pt-header">
-		<div class="container pb-section-mobile lg:grid lg:grid-cols-2 lg:grid-row-2 lg:pt-section-desktop lg:pb-section-desktop lg:gap-x-6">
+		<div class="container pb-section-mobile lg:grid lg:grid-cols-2 lg:pt-section-desktop lg:pb-section-desktop lg:gap-x-6">
 			<div
-				class="lg:col-start-2 lg:row-start-1">
+				class="lg:col-start-2">
 				{# Breadcrumb #}
 				<ul class="mb-2 flex gap-x-2 flex-wrap text-sm">
 					<li class="flex-none opacity-50">
@@ -25,26 +25,51 @@
 					</li>
 				</ul>
 				{# Title #}
-				<h1 class="text-3xl lg:text-4xl font-extrabold tracking-tighter leading-none mb-6">{{post.post_title}}</h1>
+				<h1 class="text-3xl lg:text-4xl font-extrabold tracking-tighter leading-none mb-6 lg:mb-8">{{post.post_title}}</h1>
+				{# Description desktop #}
+				<div class="hidden lg:block">
+				{% set formats = post.meta('formats')|split(',') %}
+				{% if formats|length > 0 %}
+					<div class="mt-6 lg:mt-0">
+						<ul class="grid gap-2">
+							{% for format in formats %}
+								{% if format|length > 0 %}
+									<li class="flex items-center gap-4">
+										<div class="circle w-2.5 h-2.5 border border-black rounded-full"></div>
+										{{format}}
+									</li>
+								{% endif %}
+							{% endfor %}
+						</ul>
+					</div>
+				{% endif %}
+				{# Btn infos #}
+				<div class="mt-6 lg:mt-10">
+					{% include "components/btns.twig" with { primary: true, text: "Demandez plus d'infos", link: contact_page.link } %}
+				</div>
+			</div>
 			</div>
 
 			{# Image #}
-			<div class="overflow-hidden rounded-md lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:w-5/6">
-				<div data-parallax data-speed="5" data-scale="1.2" class="w-full rounded-md overflow-hidden aspect-video lg:aspect-[3/2] ">
+			<div class="w-full aspect-video lg:aspect-[3/2] overflow-hidden rounded-md lg:col-start-1 lg:row-start-1 lg:w-5/6">
+				<div data-parallax data-speed="5" data-scale="1.25" class="w-full aspect-video lg:aspect-[3/2] origin-center">
 					{{ function('wp_get_attachment_image', post.thumbnail.id, 'medium_large', false, {class: 'w-full h-full object-cover'}) }}
 				</div>
 			</div>
 
-			<div class="lg:col-start-2 lg:row-start-2">
+			{# Description mobile #}
+			<div class="lg:hidden">
 				{% set formats = post.meta('formats')|split(',') %}
-				{% if formats|length > 1 %}
+				{% if formats|length > 0 %}
 					<div class="mt-6 lg:mt-0">
 						<ul class="grid gap-2">
 							{% for format in formats %}
-								<li class="flex items-center gap-4">
-									<div class="circle w-2.5 h-2.5 border border-black rounded-full"></div>
-									{{format}}
-								</li>
+								{% if format|length > 0 %}
+									<li class="flex items-center gap-4">
+										<div class="circle w-2.5 h-2.5 border border-black rounded-full"></div>
+										{{format}}
+									</li>
+								{% endif %}
 							{% endfor %}
 						</ul>
 					</div>

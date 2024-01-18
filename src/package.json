@@ -1,6 +1,9 @@
 {
 	"name": "bemy",
 	"packageManager": "yarn@4.0.0-rc.48",
+	"browserslist": [
+		"last 2 versions, not dead, > 0.2%"
+	],
 	"scripts": {
 		"build": "vite build",
 		"dev": "vite build --watch --emptyOutDir"
