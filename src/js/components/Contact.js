@@ -145,8 +145,7 @@ function Contact() {
 
 		sendEmail() {
 			grecaptcha.ready(() => {
-				grecaptcha.execute("6LcDsFEpAAAAALYFPI2wOtGraR1_VdGg199hCQIH", { action: "submit" }).then((token) => {
-					console.log(token)
+				grecaptcha.execute("6LcDsFEpAAAAALYFPI2wOtGraR1_VdGg199hCQIX", { action: "submit" }).then((token) => {
 					this.emailIsSending = true
 
 					const data = {
@@ -164,7 +163,6 @@ function Contact() {
 					axios
 						.post(this.apiUrl, data)
 						.then((response) => {
-							console.log(response)
 							if (response.data.success) {
 								this.emailIsSending = false
 								this.emailSent = true

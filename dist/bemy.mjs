@@ -6412,8 +6412,8 @@ function kp() {
     },
     sendEmail() {
       grecaptcha.ready(() => {
-        grecaptcha.execute("6LcDsFEpAAAAALYFPI2wOtGraR1_VdGg199hCQIH", { action: "submit" }).then((n) => {
-          console.log(n), this.emailIsSending = !0;
+        grecaptcha.execute("6LcDsFEpAAAAALYFPI2wOtGraR1_VdGg199hCQIX", { action: "submit" }).then((n) => {
+          this.emailIsSending = !0;
           const e = {
             firstname: this.fields.firstname,
             lastname: this.fields.lastname,
@@ -6426,7 +6426,7 @@ function kp() {
             "g-recaptcha-response": n
           };
           axios.post(this.apiUrl, e).then((t) => {
-            console.log(t), t.data.success ? (this.emailIsSending = !1, this.emailSent = !0, this.emailStatusMessage = t.data.message, this.resetFields()) : (this.emailIsSending = !1, this.emailSent = !1, this.emailStatusMessage = "Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer plus tard.", this.resetFields());
+            t.data.success ? (this.emailIsSending = !1, this.emailSent = !0, this.emailStatusMessage = t.data.message, this.resetFields()) : (this.emailIsSending = !1, this.emailSent = !1, this.emailStatusMessage = "Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer plus tard.", this.resetFields());
           }).catch((t) => {
             console.log(t);
           });
