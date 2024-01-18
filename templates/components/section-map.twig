@@ -1,7 +1,7 @@
 {% set contact = options.contact_infos %}
 <section class="relative overflow-hidden bg-blue bg-opacity-5 py-section-mobile lg:py-section-desktop">
 	<div class="container lg:grid lg:gap-6 lg:grid-cols-4">
-		<div>
+		<div class="lg:pr-6">
 			<h2 class="text-xl lg:text-2xl font-semibold mb-2 lg:mb-4">Où nous trouver</h2>
 			<p class="mb-6 lg:mb-8 leading-relaxed">Rencontrez la FBCG : vos  experts en distribution et stockage de métaux non-ferreux.</p>
 			{% if not hide_contact_button %}
@@ -19,15 +19,15 @@
 			</div>
 			<div class="grid gap-4 md:grid-cols-3">
 				<div>
-					<h3 class="font-bold">FBCG SA</h3>
+					<h3 class="font-bold mb-1 md:mb-2">FBCG SA</h3>
 					<p>Distributeur stockiste</p>
 				</div>
 				<div>
-					<h3 class="font-bold">Adresse</h3>
+					<h3 class="font-bold mb-1 md:mb-2">Adresse</h3>
 					<p>{{ contact.adress}}</p>
 				</div>
 				<div>
-					<h3 class="font-bold">Contact</h3>
+					<h3 class="font-bold mb-1 md:mb-2">Contact</h3>
 					<p>{{ contact.phone}}</p>
 					<p>
 						<a href="mailto:{{contact.email}}">{{ contact.email }}</a>

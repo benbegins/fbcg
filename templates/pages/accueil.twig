@@ -4,7 +4,7 @@
 
 	{# Hero #}
 	<section class="pt-header relative lg:h-[90dvh] lg:max-h-[66vw] lg:text-white lg:flex lg:items-end lg:pb-12">
-		<div class="container" data-parallax data-speed="10">
+		<div class="container">
 			<h1 class="text-3xl lg:text-4xl font-extrabold tracking-tighter leading-none mb-6 lg:mb-8 xl:w-3/4">Votre spécialiste en aluminium, bronze, laiton, cuivre, fonte &amp; plastiques techniques</h1>
 			{% include "components/btns.twig" with {primary: true, text: 'Découvrez nos produits', link: products_page} %}
 			<div class="lg:hidden"></div>
@@ -37,7 +37,7 @@
 	{# Produits #}
 	<section v-scope="Slider({slidesOnDesktop: 'auto'})" @vue:mounted="initSlider($el)" class="relative slider-home-product_cats">
 		<div class="container">
-			<div class="lg:flex lg:flex-col lg:justify-between lg:w-1/4 lg:pr-6 lg:absolute lg:h-full lg:max-w-[calc(1536px/4)]">
+			<div class="lg:flex lg:flex-col lg:justify-between lg:w-1/4 lg:pr-12 lg:absolute lg:h-full lg:max-w-[calc(1536px/4)]">
 				<div>
 					<h2 class="text-xl lg:text-2xl font-semibold mb-2 lg:mb-4">Tous nos produits</h2>
 					<p class="leading-relaxed">{{ post.meta('products_presentation') }}</p>
