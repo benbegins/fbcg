@@ -24,7 +24,9 @@ if ( ! function_exists( 'bemy_scripts' ) ) {
 		wp_enqueue_style( 'bemy-google-fonts', 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;800&display=swap', false );
 
 		// Google recapcha
-		wp_enqueue_script( 'bemy-google-recaptcha', 'https://www.google.com/recaptcha/api.js?render=6LcDsFEpAAAAALYFPI2wOtGraR1_VdGg199hCQIH', array(), false, true );
+		if ( is_page( 'contact' ) ) {
+			wp_enqueue_script( 'bemy-google-recaptcha', 'https://www.google.com/recaptcha/api.js?render=6LcDsFEpAAAAALYFPI2wOtGraR1_VdGg199hCQIH', array(), false, true );
+		}
 	}
 }
 add_action( 'wp_enqueue_scripts', 'bemy_scripts' );
