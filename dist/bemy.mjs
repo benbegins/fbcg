@@ -6411,7 +6411,7 @@ function kp() {
       this.errorMessage = "", this.errors.firstname = !1, this.errors.lastname = !1, this.errors.company = !1, this.errors.email = !1, this.errors.city = !1, this.errors.zipcode = !1, this.errors.phone = !1, this.errors.message = !1, this.errors.rgpd = !1;
     },
     sendEmail() {
-      grecaptcha.ready(function() {
+      grecaptcha.ready(() => {
         grecaptcha.execute("6LcDsFEpAAAAALYFPI2wOtGraR1_VdGg199hCQIH", { action: "submit" }).then((n) => {
           console.log(n), this.emailIsSending = !0;
           const e = {
@@ -6422,7 +6422,8 @@ function kp() {
             city: this.fields.city,
             zipcode: this.fields.zipcode,
             phone: this.fields.phone,
-            message: this.fields.message
+            message: this.fields.message,
+            "g-recaptcha-response": n
           };
           axios.post(this.apiUrl, e).then((t) => {
             console.log(t), t.data.success ? (this.emailIsSending = !1, this.emailSent = !0, this.emailStatusMessage = t.data.message, this.resetFields()) : (this.emailIsSending = !1, this.emailSent = !1, this.emailStatusMessage = "Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer plus tard.", this.resetFields());

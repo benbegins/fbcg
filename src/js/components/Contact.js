@@ -144,7 +144,7 @@ function Contact() {
 		},
 
 		sendEmail() {
-			grecaptcha.ready(function () {
+			grecaptcha.ready(() => {
 				grecaptcha.execute("6LcDsFEpAAAAALYFPI2wOtGraR1_VdGg199hCQIH", { action: "submit" }).then((token) => {
 					console.log(token)
 					this.emailIsSending = true
@@ -158,6 +158,7 @@ function Contact() {
 						zipcode: this.fields.zipcode,
 						phone: this.fields.phone,
 						message: this.fields.message,
+						"g-recaptcha-response": token,
 					}
 
 					axios
