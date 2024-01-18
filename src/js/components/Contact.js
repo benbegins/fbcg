@@ -149,39 +149,39 @@ function Contact() {
 					.execute("6LcDsFEpAAAAALYFPI2wOtGraR1_VdGg199hCQIH", { action: "submit" })
 					.then(function (token) {
 						console.log(token)
-						// this.emailIsSending = true
+						this.emailIsSending = true
 
-						// const data = {
-						// 	firstname: this.fields.firstname,
-						// 	lastname: this.fields.lastname,
-						// 	company: this.fields.company,
-						// 	email: this.fields.email,
-						// 	city: this.fields.city,
-						// 	zipcode: this.fields.zipcode,
-						// 	phone: this.fields.phone,
-						// 	message: this.fields.message,
-						// }
+						const data = {
+							firstname: this.fields.firstname,
+							lastname: this.fields.lastname,
+							company: this.fields.company,
+							email: this.fields.email,
+							city: this.fields.city,
+							zipcode: this.fields.zipcode,
+							phone: this.fields.phone,
+							message: this.fields.message,
+						}
 
-						// axios
-						// 	.post(this.apiUrl, data)
-						// 	.then((response) => {
-						// 		console.log(response)
-						// 		if (response.data.success) {
-						// 			this.emailIsSending = false
-						// 			this.emailSent = true
-						// 			this.emailStatusMessage = response.data.message
-						// 			this.resetFields()
-						// 		} else {
-						// 			this.emailIsSending = false
-						// 			this.emailSent = false
-						// 			this.emailStatusMessage =
-						// 				"Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer plus tard."
-						// 			this.resetFields()
-						// 		}
-						// 	})
-						// 	.catch((error) => {
-						// 		console.log(error)
-						// 	})
+						axios
+							.post(this.apiUrl, data)
+							.then((response) => {
+								console.log(response)
+								if (response.data.success) {
+									this.emailIsSending = false
+									this.emailSent = true
+									this.emailStatusMessage = response.data.message
+									this.resetFields()
+								} else {
+									this.emailIsSending = false
+									this.emailSent = false
+									this.emailStatusMessage =
+										"Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer plus tard."
+									this.resetFields()
+								}
+							})
+							.catch((error) => {
+								console.log(error)
+							})
 					})
 			})
 		},
