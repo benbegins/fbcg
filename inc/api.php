@@ -99,8 +99,8 @@ function bemy_contact_form($request) {
     // Get the email address from the options page
     $email_fbcg = get_field('contact_infos', 'options')['email'];
 
-    $to = 'hello@bemy.studio';
-    // $to = $email_fbcg;
+    // $to = 'hello@bemy.studio';
+    $to = $email_fbcg;
     
     $subject = 'Nouveau message de ' . $firstname . ' ' . $lastname . ' depuis le site FBCG';
 
