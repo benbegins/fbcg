@@ -40,6 +40,9 @@ export default {
 			borderRadius: {
 				sm: "0.25rem",
 			},
+			letterSpacing: {
+				tighter: "-0.04em",
+			},
 			padding: {
 				header: "6rem",
 				"section-mobile": "3.5rem",
