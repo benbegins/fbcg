@@ -41,7 +41,7 @@ export default {
 				sm: "0.25rem",
 			},
 			letterSpacing: {
-				tighter: "-0.04em",
+				tighter: "-0.04rem",
 			},
 			padding: {
 				header: "6rem",
