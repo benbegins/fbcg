@@ -6321,11 +6321,12 @@ function Cp() {
       }));
     },
     animateParallax(n) {
-      const e = n.dataset.speed ? parseFloat(n.dataset.speed) : 5;
-      Tr.set(n, {
+      const e = n.dataset.speed ? parseFloat(n.dataset.speed) : 5, t = n.querySelector("img");
+      let i;
+      t ? i = t : i = n, Tr.set(i, {
         scale: n.dataset.scale ? parseFloat(n.dataset.scale) : 1
       }), Tr.fromTo(
-        n,
+        i,
         {
           y: `-${e * (window.innerHeight / 100)}`
         },

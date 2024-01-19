@@ -38,13 +38,17 @@ function Parallax() {
 		animateParallax(element) {
 			// Set speed
 			const speed = element.dataset.speed ? parseFloat(element.dataset.speed) : 5
+			// Check if element has img child
+			const img = element.querySelector("img")
+			let parallaxElement
+			img ? (parallaxElement = img) : (parallaxElement = element)
 			// Set scale
-			gsap.set(element, {
+			gsap.set(parallaxElement, {
 				scale: element.dataset.scale ? parseFloat(element.dataset.scale) : 1,
 			})
 			// Animate
 			gsap.fromTo(
-				element,
+				parallaxElement,
 				{
 					y: `-${speed * (window.innerHeight / 100)}`,
 				},
