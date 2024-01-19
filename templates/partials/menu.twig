@@ -3,7 +3,7 @@
 	{% for type in product_types %}
 		<li>
 			<button class="btn-submenu font-semibold w-full flex items-center justify-between gap-2 lg:hover:bg-gray transition-colors duration-200 lg:py-1.5 lg:px-3 lg:rounded-sm" @click="toggleSubmenu($el)" aria-expanded="false" aria-controls="submenu-{{type.slug}}">
-				{{type.title}}
+				{{ type.title|remove_techniques_word }}
 				<span aria-hidden="true" class="icon-dropdown scale-125 lg:scale-100 lg:mb-1"></span>
 			</button>
 			<div class="site-header__submenu opacity-0 pl-8 overflow-hidden h-0 transition-all duration-500 lg:absolute lg:top-full lg:w-[calc(100%+2px)] lg:-left-px lg:bg-white lg:text-black lg:-translate-y-1 lg:rounded-b-md lg:border-b lg:border-l lg:border-r lg:border-gray lg:border-t-0 lg:p-0 xl:grid xl:grid-cols-3 xl:items-start" id="submenu-{{type.slug}}" aria-hidden="true">

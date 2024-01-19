@@ -58,10 +58,13 @@ class BemySite extends Timber\Site {
 		$args = array(
 			'taxonomy' => 'type-de-produit',
 			'hide_empty' => true,
-			'orderby' => 'menu_order',
-			'order' => 'ASC'
 		);
-		$context['product_types'] = Timber::get_terms($args);
+		$product_types = Timber::get_terms($args);
+		// Order by ACF field 'display_order'
+		usort($product_types, function($a, $b) {
+			return $a->display_order - $b->display_order;
+		});
+		$context['product_types'] = $product_types;
 
 		return $context;
 	}
@@ -81,6 +84,13 @@ class BemySite extends Timber\Site {
         return preg_replace($pattern, $replacement, $value);
     }
 
+	function remove_techniques_word($value){
+		// replace "Plastiques techniques" by "Plastiques"
+		$pattern = '/Plastiques techniques/';
+		$replacement = 'Plastiques';
+		return preg_replace($pattern, $replacement, $value);
+	}
+
 	/** This is where you can add your own functions to twig.
 	 *
 	 * @param string $twig get extension.
@@ -89,6 +99,7 @@ class BemySite extends Timber\Site {
 		$twig->addExtension( new Twig\Extension\StringLoaderExtension() );
 		$twig->addFilter( new Twig\TwigFilter( 'hash_to_tags', array( $this, 'hash_to_tags' ) ) );
 		$twig->addFilter( new Twig\TwigFilter( 'hash_to_link', array( $this, 'hash_to_link' ) ) );
+		$twig->addFilter( new Twig\TwigFilter( 'remove_techniques_word', array( $this, 'remove_techniques_word' ) ) );
 		return $twig;
 	}
 }

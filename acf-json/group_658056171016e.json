@@ -26,6 +26,28 @@
             "max_size": "",
             "mime_types": "",
             "preview_size": "medium"
+        },
+        {
+            "key": "field_65aa3642b740f",
+            "label": "Ordre d'affichage",
+            "name": "display_order",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 1,
+            "max": 10,
+            "placeholder": "",
+            "step": 1,
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -46,5 +68,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1702909524
+    "modified": 1705653872
 }
