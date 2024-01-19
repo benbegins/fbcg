@@ -46,23 +46,37 @@ function Parallax() {
 			gsap.set(parallaxElement, {
 				scale: element.dataset.scale ? parseFloat(element.dataset.scale) : 1,
 			})
-			// Animate
-			gsap.fromTo(
-				parallaxElement,
-				{
-					y: `-${speed * (window.innerHeight / 100)}`,
-				},
-				{
+			// If element is on header
+			if (element.dataset.position == "top") {
+				gsap.set(parallaxElement, { scale: 1 })
+				gsap.to(parallaxElement, {
 					y: `${speed * (window.innerHeight / 100)}`,
 					ease: "none",
 					scrollTrigger: {
 						trigger: element.parentElement,
 						scrub: true,
-						start: "top bottom",
+						start: "top top",
 						end: "bottom top",
 					},
-				}
-			)
+				})
+			} else {
+				gsap.fromTo(
+					parallaxElement,
+					{
+						y: `-${speed * (window.innerHeight / 100)}`,
+					},
+					{
+						y: `${speed * (window.innerHeight / 100)}`,
+						ease: "none",
+						scrollTrigger: {
+							trigger: element.parentElement,
+							scrub: true,
+							start: "top bottom",
+							end: "bottom top",
+						},
+					}
+				)
+			}
 		},
 	}
 }
