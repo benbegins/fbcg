@@ -78,3 +78,21 @@ if ( ! function_exists( 'bemy_disable_emojis_tinymce' ) ) {
 }
 
 add_action('init', 'bemy_disable_emoji_feature');
+
+
+
+// Google Analytics
+if ( ! function_exists( 'bemy_google_analytics' ) ) {
+	function bemy_google_analytics() {
+		?>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXR6G4QS0H"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-XXR6G4QS0H');
+		</script>
+		<?php
+	}
+}
+add_action( 'wp_head', 'bemy_google_analytics' );
