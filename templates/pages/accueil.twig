@@ -81,7 +81,7 @@
 					<p class="mb-6 lg:mb-8 leading-relaxed">{{ news.description }}</p>
 					{% set button = news.button %}
 					{% if button.link and button.text %}
-						{% include "components/btns.twig" with { primary: true, white: true, text: button.text, link: button.link } %}
+						{% include "components/btns.twig" with { primary: true, white: true, text: button.text, link: button.link.url, target: button.link.target } %}
 					{% endif %}
 				</div>
 			</div>
